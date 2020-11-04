@@ -16,4 +16,10 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'role' => [
+        'admin' => '總管理者',
+        'teacher' => '教師',
+        'student' => '學生',
+    ],
+
 ];
