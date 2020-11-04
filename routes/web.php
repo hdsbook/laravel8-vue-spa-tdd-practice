@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('unauthorized', function () {
+    abort(403, 'Unauthorized action.');
+});
+
+Route::middleware(['auth:sanctum', 'role.check:admin'])->get('/', function () {
     return view('welcome');
 });
 
