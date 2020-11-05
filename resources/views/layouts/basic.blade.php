@@ -21,7 +21,7 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             <!-- Page Heading -->
-            <header class="bg-white shadow fixed w-full">
+            <header class="bg-white shadow sticky w-full">
                 @include('navbar')
             </header>
 
@@ -32,6 +32,8 @@
         </div>
 
         @stack('modals')
+
+        @yield('scripts')
 
     </body>
 </html>
