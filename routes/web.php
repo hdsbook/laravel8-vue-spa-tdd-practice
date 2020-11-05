@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/jet', function () {
@@ -20,3 +21,5 @@ Route::get('unauthorized', function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+
+Route::resource('news', NewsController::class);
