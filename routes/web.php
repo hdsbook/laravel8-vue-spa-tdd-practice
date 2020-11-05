@@ -22,4 +22,4 @@ Route::get('unauthorized', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
-Route::resource('news', NewsController::class);
+Route::resource('news', NewsController::class)->only('index');

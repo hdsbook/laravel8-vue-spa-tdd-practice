@@ -3,10 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Repositories\NewsRepository;
 use Illuminate\Http\Request;
 
+/**
+ * class NewsController
+ *
+ * @property NewsRepository $newsRepo
+ */
 class NewsController extends Controller
 {
+    public function __construct(NewsRepository $newsRepo)
+    {
+        $this->newsRepo = $newsRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +26,12 @@ class NewsController extends Controller
     public function index()
     {
         return view('news.index');
+    }
+
+    public function fetchNews()
+    {
+        $news = $this->newsRepo->getAll();
+        return response()->json($news);
     }
 
     /**
