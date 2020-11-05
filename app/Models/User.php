@@ -64,6 +64,11 @@ class User extends Authenticatable
         return $this->hasMany(UserRole::class);
     }
 
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
+
     public function isRole($role)
     {
         return $this->userRoles->where('role', $role)->count() > 0;
