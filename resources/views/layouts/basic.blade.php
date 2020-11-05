@@ -35,5 +35,6 @@
 
         @yield('scripts')
 
+        @routes
     </body>
 </html>
