@@ -4,8 +4,10 @@
 
 @section('content')
 <div id="newsApp"></div>
+
+@routes(['news'])
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/components/news.js') }}"></script>
+<script src="{{ mix('js/pages/news.js') }}"></script>
 @endsection
