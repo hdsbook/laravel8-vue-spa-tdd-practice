@@ -35,6 +35,7 @@
 
         @yield('scripts')
 
-        @routes
+        {{-- 此為 ziggy 套件的 routes，可在 config/ziggy.php 找到其設定 --}}
+        @routes('common')
     </body>
 </html>
