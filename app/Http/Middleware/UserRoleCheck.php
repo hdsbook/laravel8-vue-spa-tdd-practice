@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Repositories\UserRepository;
 
 class UserRoleCheck
 {
@@ -16,7 +17,8 @@ class UserRoleCheck
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        return auth()->user()->isRole($role)
+        $userRepo = new UserRepository(auth()->user());
+        return $userRepo->isRole($role)
             ? $next($request)
             : redirect('unauthorized');
     }

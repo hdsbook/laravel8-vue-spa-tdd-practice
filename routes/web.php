@@ -11,6 +11,10 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth:sanctum', 'role.check:admin'])->get('/role', function () {
+    echo 'authorized!';
+});
+
 Route::get('unauthorized', function () {
     abort(403, 'Unauthorized action.');
 });
