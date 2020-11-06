@@ -1,7 +1,8 @@
 class NewsApi {
 
     constructor() {
-        this.apiFetchNews = route('news.fetch');
+        // this.apiFetchNews = route('news.fetch');
+        this.apiFetchNews = base_url('api/news');
     }
 
     fetchNews() {

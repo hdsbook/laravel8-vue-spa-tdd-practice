@@ -1,31 +1,34 @@
 <template>
-    <div class="flex flex-col items-center px-3">
+    <div>
         <NewsCard
-            v-for="news in newsList"
+            v-for="news in allNews"
             :key="news.id"
-            :news="news" />
+            v-bind="news" />
     </div>
 </template>
 
 <script>
 import Vue from 'vue';
 import NewsCard from './NewsCard.vue';
-import NewsApi from '../../api/NewsApi';
+import Button from '../../components/Button.vue';
+
+import NewsApi from '../../apis/NewsApi';
 
 export default {
     components: {
         NewsCard,
+        Button,
     },
     data() {
         return {
             newsApi: null,
-            newsList: [],
+            allNews: [],
         };
     },
     mounted() {
         this.newsApi = new NewsApi();
         this.newsApi.fetchNews().then(allNews => {
-            this.newsList = allNews;
+            this.allNews = allNews;
         });
     },
 }

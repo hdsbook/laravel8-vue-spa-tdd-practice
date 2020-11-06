@@ -20,6 +20,10 @@ Route::get('unauthorized', function () {
     abort(403, 'Unauthorized action.');
 });
 
-Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+// Route::get('/', [HomeController::class, 'index']);
 
-Route::resource('news', NewsController::class)->only('index');
+// Route::get('news', [NewsController::class, 'index'])->name('news.index');
+
+Route::get('/{path}', function () {
+    return view('spa');
+})->where('path', '^((?!api).)*$');
