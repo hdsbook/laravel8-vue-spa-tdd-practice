@@ -1899,6 +1899,35 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Button.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Button.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Button',
+  props: {
+    to: {
+      required: false
+    }
+  },
+  computed: {
+    type: function type() {
+      return this.to ? 'router-link' : 'button';
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Card.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Card.vue?vue&type=script&lang=js& ***!
@@ -1910,6 +1939,7 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -1977,6 +2007,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -1991,7 +2022,7 @@ __webpack_require__.r(__webpack_exports__);
       allNews: []
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     var _this = this;
 
     new _apis_NewsApi__WEBPACK_IMPORTED_MODULE_3__["default"]().fetchNews().then(function (allNews) {
@@ -2021,8 +2052,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2036,17 +2065,7 @@ __webpack_require__.r(__webpack_exports__);
       news: {}
     };
   },
-  // async beforeRouteEnter (to, from, next) {
-  //     console.log(to.params.id);
-  //     console.log('hi' + to.params.id);
-  //     // try {
-  //     //     const { data } = await axios.post(`/api/email/verify/${to.params.id}?${qs(to.query)}`)
-  //     //     next(vm => { vm.success = data.status })
-  //     // } catch (e) {
-  //     //     next(vm => { vm.error = e.response.data.status })
-  //     // }
-  // },
-  mounted: function mounted() {
+  created: function created() {
     var _this = this;
 
     new _apis_NewsApi__WEBPACK_IMPORTED_MODULE_2__["default"]().fetchNews(this.$route.params.id).then(function (news) {
@@ -20399,7 +20418,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("button", { staticClass: "btn" }, [_vm._t("default")], 2)
+  return _c(
+    _vm.type,
+    { tag: "component", staticClass: "btn", attrs: { to: _vm.to } },
+    [_vm._t("default")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -20431,16 +20455,9 @@ var render = function() {
         _c("h1", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.title))])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "card-body" },
-        [
-          _vm._t("card_body", [
-            _vm._v("\n      " + _vm._s(_vm.content) + "\n    ")
-          ])
-        ],
-        2
-      ),
+      _vm._t("card_body", [
+        _c("div", { staticClass: "card-body" }, [_vm._v(_vm._s(_vm.content))])
+      ]),
       _vm._v(" "),
       _vm._t("card_footer")
     ],
@@ -20513,47 +20530,45 @@ var render = function() {
         ),
         _vm._v(" "),
         _vm._l(_vm.allNews, function(news) {
-          return _c(
-            "Card",
-            _vm._b({ key: news.id }, "Card", news, false),
-            [
-              _c("template", { slot: "card_body" }, [
-                _c("div", { staticClass: "truncate" }, [
-                  _vm._v(_vm._s(news.content))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("template", { slot: "card_footer" }, [
+          return _c("Card", _vm._b({ key: news.id }, "Card", news, false), [
+            _c(
+              "div",
+              {
+                staticClass: "card-body truncate",
+                attrs: { slot: "card_body" },
+                slot: "card_body"
+              },
+              [_vm._v("\n        " + _vm._s(news.content) + "\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "card-footer",
+                attrs: { slot: "card_footer" },
+                slot: "card_footer"
+              },
+              [
+                _c("Button", { staticClass: "danger" }, [_vm._v("Delete")]),
+                _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "card-footer" },
+                  { staticClass: "float-right" },
                   [
-                    _c("Button", { staticClass: "danger" }, [_vm._v("Delete")]),
+                    _c("Button", { staticClass: "primary" }, [_vm._v("Edit")]),
                     _vm._v(" "),
                     _c(
-                      "div",
-                      { staticClass: "float-right" },
-                      [
-                        _c("Button", { staticClass: "primary" }, [
-                          _vm._v("Edit")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          { attrs: { to: { path: "/news/show/" + news.id } } },
-                          [_c("Button", [_vm._v("Read")])],
-                          1
-                        )
-                      ],
-                      1
+                      "Button",
+                      { attrs: { to: { path: "/news/show/" + news.id } } },
+                      [_vm._v("\n            Read\n          ")]
                     )
                   ],
                   1
                 )
-              ])
-            ],
-            2
-          )
+              ],
+              1
+            )
+          ])
         })
       ],
       2
@@ -20588,12 +20603,7 @@ var render = function() {
     [
       _c("Card", _vm._b({ staticClass: "md:w-2/3" }, "Card", _vm.news, false)),
       _vm._v(" "),
-      _c(
-        "router-link",
-        { attrs: { to: "/news" } },
-        [_c("Button", [_vm._v("回最新消息")])],
-        1
-      )
+      _c("Button", { attrs: { to: "/news" } }, [_vm._v("回最新消息")])
     ],
     1
   )
@@ -35973,17 +35983,19 @@ window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('m
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Button_vue_vue_type_template_id_e0422746_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue?vue&type=template&id=e0422746&scoped=true& */ "./resources/js/components/Button.vue?vue&type=template&id=e0422746&scoped=true&");
-/* harmony import */ var _Button_vue_vue_type_style_index_0_id_e0422746_lang_sass_scoped_true___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button.vue?vue&type=style&index=0&id=e0422746&lang=sass&scoped=true& */ "./resources/js/components/Button.vue?vue&type=style&index=0&id=e0422746&lang=sass&scoped=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button.vue?vue&type=script&lang=js& */ "./resources/js/components/Button.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Button_vue_vue_type_style_index_0_id_e0422746_lang_sass_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Button.vue?vue&type=style&index=0&id=e0422746&lang=sass&scoped=true& */ "./resources/js/components/Button.vue?vue&type=style&index=0&id=e0422746&lang=sass&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Button_vue_vue_type_template_id_e0422746_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Button_vue_vue_type_template_id_e0422746_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -35997,6 +36009,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Button.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Button.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Button.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Button.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Button.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -36386,7 +36412,7 @@ __webpack_require__.r(__webpack_exports__);
 }, {
   path: '/news/show/:id',
   component: _pages_news_NewsShow_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-  name: 'news'
+  name: 'news.show'
 }]);
 
 /***/ }),

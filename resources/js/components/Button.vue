@@ -1,6 +1,21 @@
 <template>
-  <button class="btn"><slot /></button>
+  <component :is="type" :to="to" class="btn"><slot /></component>
 </template>
+
+<script>
+export default {
+  props: {
+    to: {
+      required: false,
+    }
+  },
+  computed: {
+    type() {
+      return this.to ? 'router-link' : 'button';
+    }
+  }
+}
+</script>
 
 <style lang="sass" scoped>
 .btn

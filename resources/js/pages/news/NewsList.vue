@@ -1,28 +1,28 @@
 <template>
   <div class="flex flex-col items-center p-3">
     <div class="md:w-2/3 w-full">
-      <!-- create news button -->
+      <!-- 新增按扭 -->
       <div class="text-right">
         <Button class="success">Create news</Button>
       </div>
 
-      <!-- news cards -->
+      <!-- 消息列表 -->
       <Card v-for="news in allNews" :key="news.id" v-bind="news">
-        <template slot="card_body" >
-          <div class="truncate">{{ news.content }}</div>
-        </template>
+        <!-- card body -->
+        <div slot="card_body" class="card-body truncate">
+          {{ news.content }}
+        </div>
 
-        <template slot="card_footer">
-          <div class="card-footer">
-            <Button class="danger">Delete</Button>
-            <div class="float-right">
-              <Button class="primary">Edit</Button>
-              <router-link :to="{ path: '/news/show/' + news.id }">
-                <Button>Read</Button>
-              </router-link>
-            </div>
+        <!-- card footer -->
+        <div slot="card_footer" class="card-footer">
+          <Button class="danger">Delete</Button>
+          <div class="float-right">
+            <Button class="primary">Edit</Button>
+            <Button :to="{ path: '/news/show/' + news.id }">
+              Read
+            </Button>
           </div>
-        </template>
+        </div>
       </Card>
     </div>
   </div>
@@ -40,7 +40,7 @@ export default {
   data: () => ({
     allNews: [],
   }),
-  mounted() {
+  created() {
     new NewsApi().fetchNews().then((allNews) => {
       this.allNews = allNews;
     });
