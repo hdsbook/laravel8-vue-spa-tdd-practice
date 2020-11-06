@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/news', [NewsController::class, 'fetchNews'])->name('news.fetch');
+Route::prefix('news')->group(function () {
+    Route::get('fetch', [NewsController::class, 'fetchNews'])->name('news.fetch');
+});

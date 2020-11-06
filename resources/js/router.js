@@ -8,14 +8,14 @@ import newsRoutes from './routes/newsRoutes';
 Vue.use(Router);
 
 const routes = [
-    ...newsRoutes,
+	...newsRoutes,
 ];
-routes.push({ path: '/', component: home, name:'home'})
+routes.push({ path: '/', component: home, name: 'home' })
 routes.push({ path: '*', redirect: '/' })
 
 const router = new Router({
-    mode: 'history',
-    routes
+	mode: 'history',
+	routes
 })
 
 export { routes };

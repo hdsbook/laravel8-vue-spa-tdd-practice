@@ -28,9 +28,11 @@ class NewsController extends Controller
         return view('news.index');
     }
 
-    public function fetchNews()
+    public function fetchNews(Request $request)
     {
-        $news = $this->newsRepo->getAll();
+        $news = $request->id
+            ? $this->newsRepo->getById($request->id)
+            : $this->newsRepo->getAll();
         return response()->json($news);
     }
 

@@ -6,9 +6,9 @@ import router from './router';
 // console.log(routes);
 
 const app = new Vue({
-    el: '#app',
-    data: {
-        open: false,
-    },
-    router
+	el: '#app',
+	data: {
+		open: false,
+	},
+	router
 });
