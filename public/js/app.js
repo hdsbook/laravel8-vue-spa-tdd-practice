@@ -2033,7 +2033,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".btn[data-v-e0422746] {\n  padding-left: 0.75rem;\n  padding-right: 0.75rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin: 0.25rem;\n  font-size: 0.875rem;\n  border-width: 1px;\n  border-radius: 0.25rem;\n  display: inline-block;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.btn[data-v-e0422746]:hover {\n  --bg-opacity: 1;\n  background-color: #e5e7eb;\n  background-color: rgba(229, 231, 235, var(--bg-opacity));\n}", ""]);
+exports.push([module.i, ".btn[data-v-e0422746] {\n  padding-left: 0.75rem;\n  padding-right: 0.75rem;\n  padding-top: 0.25rem;\n  padding-bottom: 0.25rem;\n  margin: 0.25rem;\n  font-size: 0.875rem;\n  border-width: 1px;\n  border-radius: 0.25rem;\n  display: inline-block;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  transition-duration: 100ms;\n}\n.btn[data-v-e0422746]:hover {\n  --bg-opacity: 1;\n  background-color: #e5e7eb;\n  background-color: rgba(229, 231, 235, var(--bg-opacity));\n}\n.btn.success[data-v-e0422746] {\n  --border-opacity: 1;\n  border-color: #0e9f6e;\n  border-color: rgba(14, 159, 110, var(--border-opacity));\n  --text-opacity: 1;\n  color: #0e9f6e;\n  color: rgba(14, 159, 110, var(--text-opacity));\n}\n.btn.success[data-v-e0422746]:hover {\n  --bg-opacity: 1;\n  background-color: #0e9f6e;\n  background-color: rgba(14, 159, 110, var(--bg-opacity));\n  --text-opacity: 1;\n  color: #ffffff;\n  color: rgba(255, 255, 255, var(--text-opacity));\n}\n.btn.primary[data-v-e0422746] {\n  --border-opacity: 1;\n  border-color: #3f83f8;\n  border-color: rgba(63, 131, 248, var(--border-opacity));\n  --text-opacity: 1;\n  color: #3f83f8;\n  color: rgba(63, 131, 248, var(--text-opacity));\n}\n.btn.primary[data-v-e0422746]:hover {\n  --bg-opacity: 1;\n  background-color: #3f83f8;\n  background-color: rgba(63, 131, 248, var(--bg-opacity));\n  --text-opacity: 1;\n  color: #ffffff;\n  color: rgba(255, 255, 255, var(--text-opacity));\n}\n.btn.danger[data-v-e0422746] {\n  --border-opacity: 1;\n  border-color: #f05252;\n  border-color: rgba(240, 82, 82, var(--border-opacity));\n  --text-opacity: 1;\n  color: #f05252;\n  color: rgba(240, 82, 82, var(--text-opacity));\n}\n.btn.danger[data-v-e0422746]:hover {\n  --bg-opacity: 1;\n  background-color: #f05252;\n  background-color: rgba(240, 82, 82, var(--bg-opacity));\n  --text-opacity: 1;\n  color: #ffffff;\n  color: rgba(255, 255, 255, var(--text-opacity));\n}", ""]);
 
 // exports
 
@@ -20426,7 +20426,7 @@ var render = function() {
         _c(
           "div",
           { staticClass: "text-right" },
-          [_c("Button", [_vm._v("Create news")])],
+          [_c("Button", { staticClass: "success" }, [_vm._v("Create news")])],
           1
         ),
         _vm._v(" "),
@@ -20471,11 +20471,11 @@ var render = function() {
       "div",
       { staticClass: "card-footer" },
       [
-        _c("Button", [_vm._v("Read")]),
+        _c("Button", {}, [_vm._v("Read")]),
         _vm._v(" "),
-        _c("Button", [_vm._v("Edit")]),
+        _c("Button", { staticClass: "primary" }, [_vm._v("Edit")]),
         _vm._v(" "),
-        _c("Button", [_vm._v("Delete")])
+        _c("Button", { staticClass: "danger" }, [_vm._v("Delete")])
       ],
       1
     )

@@ -7,9 +7,9 @@
             {{ content }}
         </div>
         <div class="card-footer">
-            <Button>Read</Button>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
+            <Button class="">Read</Button>
+            <Button class="primary">Edit</Button>
+            <Button class="danger">Delete</Button>
         </div>
     </div>
 </template>

@@ -2,7 +2,7 @@
     <div class="flex flex-col items-center p-3">
         <div class="md:w-2/3 w-full">
             <div class="text-right">
-                <Button>Create news</Button>
+                <Button class="success">Create news</Button>
             </div>
             <NewsList />
         </div>
