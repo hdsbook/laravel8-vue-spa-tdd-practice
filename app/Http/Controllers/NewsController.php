@@ -56,7 +56,9 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        return response()->json([
+            'success' => $this->newsRepo->updateNews($request, $news)
+        ]);
     }
 
     /**

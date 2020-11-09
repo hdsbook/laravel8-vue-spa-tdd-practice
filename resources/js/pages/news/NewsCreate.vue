@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NewsForm @submit="createNews" mode="create">
+    <NewsForm @submit="createNews" defaultTitle="" defaultContent="">
       <Button slot="submit_btn" type="submit" class="success w-full text-lg">
         Create
       </Button>
@@ -19,9 +19,7 @@ export default {
     NewsForm,
     Button,
   },
-  methods: mapActions('news', {
-    createNews: 'createNews'
-  })
+  methods: mapActions('news', ['createNews'])
 }
 </script>
 

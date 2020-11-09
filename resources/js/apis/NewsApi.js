@@ -17,10 +17,12 @@ class NewsApi {
     }).then(res => res.data);
   }
 
-  updateNews({ title, content }) {
-    console.log(title);
-    console.log(content);
-    // return axios.post(base_url)
+  updateNews({ id, title, content }) {
+    return axios.post(base_url(`api/news/${id}`), {
+      _method: 'patch',
+      title: title,
+      content: content,
+    })
   }
 
   deleteNews(id) {

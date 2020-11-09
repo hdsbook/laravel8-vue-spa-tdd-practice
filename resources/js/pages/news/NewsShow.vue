@@ -1,29 +1,25 @@
 <template>
   <!-- 顯示某一消息 -->
   <div class="flex flex-col items-center">
-    <div v-if="!news" class="text-center p-4">載入中…</div>
-    <Card v-else v-bind="news" class="md:w-2/3" />
-    <Button to="/news">回最新消息</Button>
+    <Card v-bind="news" class="w-full" />
+    <Button @click.native="listNews">回最新消息</Button>
   </div>
 </template>
 
 <script>
 import Card from "../../components/Card.vue";
 import Button from "../../components/Button.vue";
-import NewsApi from "../../apis/NewsApi";
+import { mapState, mapActions } from 'vuex';
 
 export default {
   components: {
     Card,
     Button
   },
-  data: () => ({
-    news: null,
+  methods: mapActions('news', ['listNews']),
+  computed: mapState('news', {
+    news: state => state.selectedNews,
   }),
-  created() {
-    new NewsApi().fetchNewsById(this.$route.params.id)
-      .then(news => this.news = news);
-  },
 };
 </script>
 

@@ -25,7 +25,7 @@ export default {
 
 <style lang="sass" scoped>
 .card
-  @apply bg-white bg-opacity-50 m-2 rounded-lg shadow-md
+  @apply bg-white bg-opacity-50 my-2 rounded-lg shadow-md
   .card-title
     @apply px-3 leading-8 text-lg font-bold
   .card-body

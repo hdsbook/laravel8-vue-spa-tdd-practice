@@ -18,17 +18,34 @@
     </slot>
   </form>
   <div class="text-center">
-    <Button to="/news">回最新消息</Button>
+    <Button @click.native="listNews">回最新消息</Button>
   </div>
 </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import Card from "../../components/Card.vue";
 import Button from "../../components/Button.vue";
 
 export default {
-  props: ['title', 'content'],
+  props: {
+    id: {
+      required: false,
+      default: null,
+    },
+    defaultTitle: String,
+    defaultContent: String,
+  },
+  computed: {
+    newsData() {
+      return {
+        id: this.id,
+        title: this.defaultTitle,
+        content: this.defaultContent,
+      }
+    }
+  },
   components: {
     Card,
     Button,
@@ -36,18 +53,11 @@ export default {
   mounted() {
     this.$refs.titleInput.focus()
   },
-  data() {
-    return {
-      newsData: {
-        title: this.title ,
-        content: this.content ,
-      }
-    }
-  },
   methods: {
     submitFunc() {
       this.$emit('submit', this.newsData)
-    }
+    },
+    ...mapActions('news', ['listNews']),
   }
 }
 </script>

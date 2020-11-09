@@ -17,15 +17,25 @@ class NewsRepository extends EloquentRepository
         parent::__construct($model);
     }
 
-    public function createNews(Request $request)
+    public function validateRequest(Request $request)
     {
-        $data = $request->validate([
+        return $request->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
+    }
 
+    public function createNews(Request $request)
+    {
+        $data = $this->validateRequest($request);
         return $request->user()
             ? $request->user()->news()->create($data)
             : false;
+    }
+
+    public function updateNews(Request $request, News $news)
+    {
+        $data = $this->validateRequest($request);
+        return $news->update($data);
     }
 }
