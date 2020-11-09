@@ -17,8 +17,7 @@ class UserRoleCheck
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        $userRepo = new UserRepository(auth()->user());
-        return $userRepo->isRole($role)
+        return UserRepository::checkHasRole($request->user(), $role)
             ? $next($request)
             : redirect('unauthorized');
     }

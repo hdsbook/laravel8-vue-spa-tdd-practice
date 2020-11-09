@@ -18,7 +18,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::prefix('news')->group(function () {
-    Route::get('fetch', [NewsController::class, 'fetchNews'])->name('news.fetch');
-});

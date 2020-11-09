@@ -1,12 +1,8 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SpaController;
 use Illuminate\Support\Facades\Route;
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/jet', function () {
-//     return view('dashboard');
-// });
 
 Route::get('/home', function () {
     return view('welcome');
@@ -20,10 +16,13 @@ Route::get('unauthorized', function () {
     abort(403, 'Unauthorized action.');
 });
 
-// Route::get('/', [HomeController::class, 'index']);
+Route::prefix('api')->group(function () {
+    Route::prefix('news')->group(function () {
+        Route::get('fetch', [NewsController::class, 'fetchNews'])->name('news.fetch');
+        Route::get('find', [NewsController::class, 'fetchNewsById'])->name('news.find');
+    });
+    Route::resource('news', NewsController::class)->only(['store', 'update', 'destroy']);
+});
 
-// Route::get('news', [NewsController::class, 'index'])->name('news.index');
-
-Route::get('/{path}', function () {
-    return view('spa');
-})->where('path', '^((?!api).)*$');
+Route::get('/{path}', [SpaController::class, 'index'])
+    ->where('path', '^((?!api).)*$');

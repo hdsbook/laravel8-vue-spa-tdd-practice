@@ -16,8 +16,26 @@ class UserRepository extends EloquentRepository
         parent::__construct($model);
     }
 
-    public function isRole($role)
+    /**
+     * 使用者是否具有某身份
+     *
+     * @param string $role admin|teacher|student
+     * @return boolean
+     */
+    public function hasRole($role): bool
     {
-        return $this->model->userRoles()->where('role', $role)->count() > 0;
+        return self::checkHasRole($this->model, $role);
+    }
+
+    /**
+     * 使用者是否具有某身份
+     *
+     * @param \App\Models\User $user
+     * @param string $role admin|teacher|student
+     * @return boolean
+     */
+    public static function checkHasRole($user, $role): bool
+    {
+        return $user->userRoles()->where('role', $role)->count() > 0;
     }
 }

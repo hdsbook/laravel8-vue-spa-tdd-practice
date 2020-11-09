@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Repositories\NewsRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * class NewsController
@@ -16,34 +18,20 @@ class NewsController extends Controller
     public function __construct(NewsRepository $newsRepo)
     {
         $this->newsRepo = $newsRepo;
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('news.index');
+        $this->middleware('web');
+        $this->middleware('auth')->only(['store']);
     }
 
     public function fetchNews(Request $request)
     {
-        $news = $request->id
-            ? $this->newsRepo->getById($request->id)
-            : $this->newsRepo->getAll();
+        $news = $this->newsRepo->getAll();
         return response()->json($news);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function fetchNewsById(Request $request)
     {
-        //
+        $news = $this->newsRepo->getById($request->id);
+        return response()->json($news);
     }
 
     /**
@@ -54,29 +42,9 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\News  $news
-     * @return \Illuminate\Http\Response
-     */
-    public function show(News $news)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\News  $news
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(News $news)
-    {
-        //
+        return response()->json([
+            'success' => $this->newsRepo->createNews($request),
+        ]);
     }
 
     /**
@@ -99,6 +67,8 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        return response()->json([
+            'success' => $news->delete(),
+        ]);
     }
 }

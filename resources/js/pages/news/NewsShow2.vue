@@ -13,16 +13,10 @@ import Button from "../../components/Button.vue";
 import NewsApi from "../../apis/NewsApi";
 
 export default {
+  props: ['news'],
   components: {
     Card,
     Button
-  },
-  data: () => ({
-    news: null,
-  }),
-  created() {
-    new NewsApi().fetchNewsById(this.$route.params.id)
-      .then(news => this.news = news);
   },
 };
 </script>
