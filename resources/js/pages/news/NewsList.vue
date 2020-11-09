@@ -35,26 +35,23 @@
 
 <script>
 import Vue from "vue";
+import { mapState, mapActions } from 'vuex';
 import Card from "../../components/Card.vue";
 import Button from "../../components/Button.vue";
 
-import NewsApi from "../../apis/NewsApi";
-
 export default {
-  components: { Card, Button },
-  data: () => ({
-    allNews: [],
+  components: {
+    Card,
+    Button,
+  },
+  computed: mapState('news', {
+    allNews: state => state.allNews,
   }),
   created() {
-    new NewsApi().fetchNews()
-      .then(allNews => this.allNews = allNews);
+    this.$store.dispatch('news/fetchNews');
   },
-  methods: {
-    deleteNews(id) {
-      new NewsApi().deleteNews(id).then(() => {
-        this.allNews = this.allNews.filter(news => news.id !== id)
-      })
-    }
-  },
+  methods: mapActions('news', {
+    deleteNews: 'deleteNews',
+  }),
 };
 </script>

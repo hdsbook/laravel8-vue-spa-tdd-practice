@@ -12,21 +12,16 @@
 import NewsForm from "./NewsForm.vue";
 import Button from "../../components/Button.vue";
 import NewsApi from '../../apis/NewsApi';
+import { mapActions } from 'vuex';
 
 export default {
   components: {
     NewsForm,
     Button,
   },
-  methods: {
-    createNews(newsData) {
-      new NewsApi().createNews(newsData)
-        .then(res => {
-          this.$router.push({ name: 'news.list' })
-        })
-        .catch(error => console.log(error.response.statusText));;
-    }
-  }
+  methods: mapActions('news', {
+    createNews: 'createNews'
+  })
 }
 </script>
 
