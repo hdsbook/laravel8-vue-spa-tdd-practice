@@ -40,35 +40,21 @@
       :data="newsPagination"
       @pagination-change-page="fetchNews"
       :show-disabled="true"
-      align="center"
-      size="default" />
-    <!--
-      Pagination settings (https://www.npmjs.com/package/laravel-vue-pagination)
-        align: left, center, right
-        size: default, small, large
-    -->
+      align="center" />
   </template>
 </div>
 </template>
 
 <script>
-import Vue from "vue";
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
 import NewsShow from './NewsShow.vue';
 import NewsEdit from './NewsEdit.vue';
-import Card from "../../components/Card.vue";
-import Button from "../../components/Button.vue";
-
-import Pagination from 'laravel-vue-pagination';
 
 export default {
   components: {
-    Card,
-    Button,
     NewsShow,
     NewsEdit,
-    Pagination
   },
   computed: {
     ...mapState('news', [

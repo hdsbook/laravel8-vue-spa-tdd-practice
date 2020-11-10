@@ -1915,6 +1915,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Button",
   props: {
     to: {
       required: false
@@ -1961,6 +1962,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Card",
   props: ["title", "content"]
 });
 
@@ -1975,9 +1977,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _NewsForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewsForm.vue */ "./resources/js/pages/news/NewsForm.vue");
-/* harmony import */ var _components_Button_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Button.vue */ "./resources/js/components/Button.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _NewsForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewsForm.vue */ "./resources/js/pages/news/NewsForm.vue");
 //
 //
 //
@@ -1988,15 +1989,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    NewsForm: _NewsForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Button: _components_Button_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    NewsForm: _NewsForm_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  methods: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('news', ['createNews'])
+  methods: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('news', ['createNews'])
 });
 
 /***/ }),
@@ -2012,7 +2011,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _NewsForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewsForm.vue */ "./resources/js/pages/news/NewsForm.vue");
-/* harmony import */ var _components_Button_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Button.vue */ "./resources/js/components/Button.vue");
 //
 //
 //
@@ -2024,14 +2022,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['newsData'],
   components: {
-    NewsForm: _NewsForm_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Button: _components_Button_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    NewsForm: _NewsForm_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('news', ['updateNews'])
 });
@@ -2048,8 +2044,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_Card_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Card.vue */ "./resources/js/components/Card.vue");
-/* harmony import */ var _components_Button_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Button.vue */ "./resources/js/components/Button.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2085,13 +2079,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Card: _components_Card_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Button: _components_Button_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
   props: {
     id: {
       required: false,
@@ -2130,15 +2118,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _NewsShow_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewsShow.vue */ "./resources/js/pages/news/NewsShow.vue");
-/* harmony import */ var _NewsEdit_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NewsEdit.vue */ "./resources/js/pages/news/NewsEdit.vue");
-/* harmony import */ var _components_Card_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Card.vue */ "./resources/js/components/Card.vue");
-/* harmony import */ var _components_Button_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Button.vue */ "./resources/js/components/Button.vue");
-/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js");
-/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _NewsShow_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewsShow.vue */ "./resources/js/pages/news/NewsShow.vue");
+/* harmony import */ var _NewsEdit_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewsEdit.vue */ "./resources/js/pages/news/NewsEdit.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2192,29 +2174,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-
-
-
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Card: _components_Card_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Button: _components_Button_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    NewsShow: _NewsShow_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    NewsEdit: _NewsEdit_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Pagination: laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_6___default.a
+    NewsShow: _NewsShow_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    NewsEdit: _NewsEdit_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('news', ['mode', 'targetNews', 'newsPagination'])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('news', ['allNews'])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])('news', ['setMode'])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('news', ['fetchNews', 'deleteNews', 'editNews', 'showNews'])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('news', ['mode', 'targetNews', 'newsPagination'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('news', ['allNews'])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])('news', ['setMode'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('news', ['fetchNews', 'deleteNews', 'editNews', 'showNews'])),
   mounted: function mounted() {
     this.fetchNews();
   }
@@ -2231,9 +2200,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Card_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Card.vue */ "./resources/js/components/Card.vue");
-/* harmony import */ var _components_Button_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Button.vue */ "./resources/js/components/Button.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -2242,16 +2209,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['newsData'],
-  components: {
-    Card: _components_Card_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Button: _components_Button_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  methods: Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('news', ['listNews'])
+  methods: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('news', ['listNews'])
 });
 
 /***/ }),
@@ -21551,8 +21512,7 @@ var render = function() {
               attrs: {
                 data: _vm.newsPagination,
                 "show-disabled": true,
-                align: "center",
-                size: "default"
+                align: "center"
               },
               on: { "pagination-change-page": _vm.fetchNews }
             })
@@ -38165,7 +38125,8 @@ var NewsApi = /*#__PURE__*/function () {
           content = _ref.content;
       return axios.post(base_url('api/news'), {
         title: title,
-        content: content
+        content: content //
+
       }).then(function (res) {
         return res.data;
       });
@@ -38209,10 +38170,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components */ "./resources/js/components/index.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+
+ // globally register commonly used components
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
@@ -38393,6 +38357,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Card_vue_vue_type_template_id_b9bc2c0a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/index.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/index.js ***!
+  \******************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Button_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button.vue */ "./resources/js/components/Button.vue");
+/* harmony import */ var _Card_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Card.vue */ "./resources/js/components/Card.vue");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_3__);
+
+
+ // components from 第三方套件
+
+ // https://www.npmjs.com/package/laravel-vue-pagination
+// 全域註冊常用組件
+
+[_Button_vue__WEBPACK_IMPORTED_MODULE_1__["default"], _Card_vue__WEBPACK_IMPORTED_MODULE_2__["default"]].forEach(function (Component) {
+  vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(Component.name, Component);
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Pagination', laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_3___default.a);
 
 /***/ }),
 

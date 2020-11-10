@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: "Button",
   props: {
     to: {
       required: false,

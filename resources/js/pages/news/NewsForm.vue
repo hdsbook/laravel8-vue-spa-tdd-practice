@@ -28,14 +28,8 @@
 
 <script>
 import { mapActions } from 'vuex';
-import Card from "../../components/Card.vue";
-import Button from "../../components/Button.vue";
 
 export default {
-  components: {
-    Card,
-    Button,
-  },
   props: {
     id: {
       required: false,

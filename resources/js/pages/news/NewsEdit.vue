@@ -12,13 +12,11 @@
 <script>
 import { mapActions } from 'vuex';
 import NewsForm from "./NewsForm.vue";
-import Button from "../../components/Button.vue";
 
 export default {
   props: ['newsData'],
   components: {
     NewsForm,
-    Button,
   },
   methods: mapActions('news', ['updateNews'])
 }

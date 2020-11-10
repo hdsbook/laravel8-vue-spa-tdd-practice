@@ -9,14 +9,12 @@
 </template>
 
 <script>
-import NewsForm from "./NewsForm.vue";
-import Button from "../../components/Button.vue";
 import { mapActions } from 'vuex';
+import NewsForm from "./NewsForm.vue";
 
 export default {
   components: {
     NewsForm,
-    Button,
   },
   methods: mapActions('news', ['createNews'])
 }
