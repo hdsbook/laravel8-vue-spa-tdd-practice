@@ -1,7 +1,5 @@
-import newsApi from '../../apis/newsApi';
+import API from '../../api/news';
 import router from '../../router';
-
-const API = new newsApi();
 
 export default {
   namespaced: true,
@@ -13,6 +11,11 @@ export default {
 
   getters: {
     allNews: state => state.newsPagination.data || [],
+    currentPage: (state, getters) => {
+      return (getters.allNews.length > 0)
+        ? state.newsPagination.current_page
+        : 1;
+    }
   },
 
   mutations: {
@@ -23,25 +26,21 @@ export default {
   },
 
   actions: {
-    // list, edit, show
-    listNews({ commit }) {
-      commit('setTargetNews', null);
-      commit('setMode', 'list');
-      if (router.currentRoute.name !== 'news.list') {
-        router.push({ name: 'news.list' });
+    changeMode({ commit }, [mode, news = null]) {
+      // list(列表), edit(編輯), show(閱讀) 均在 `/news` 這個 route 下切換
+      if (router.currentRoute.name !== 'news') {
+        router.push({ name: 'news' });
       }
-    },
-    editNews({ commit }, news) {
       commit('setTargetNews', news);
-      commit('setMode', 'edit');
+      commit('setMode', mode);
     },
-    showNews({ commit }, news) {
-      commit('setTargetNews', news);
-      commit('setMode', 'show');
-    },
+    listNews: ({ dispatch }) => dispatch('changeMode', ['list']),
+    editNews: ({ dispatch }, news) => dispatch('changeMode', ['edit', news]),
+    showNews: ({ dispatch }, news) => dispatch('changeMode', ['show', news]),
 
     // fetch, create, update, delete
-    fetchNews({ commit, dispatch }, page = 1) {
+    fetchNews({ commit, dispatch, getters }, page = null) {
+      page = page || getters.currentPage;
       return API.fetchNews(page)
         .then(res => commit('setNewsPagination', res.data))
         .then(() => dispatch('listNews'));

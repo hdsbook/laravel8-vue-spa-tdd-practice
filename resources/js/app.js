@@ -2,9 +2,9 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import router from './router';
-import store from './store/index';
+import store from './store';
 
-import '@/components'; // globally register commonly used components
+import './components';
 
 const app = new Vue({
 	el: '#app',
