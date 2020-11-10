@@ -1,22 +1,25 @@
 <template>
 <div class="md:w-2/3 w-full mx-auto">
   <form @submit.prevent="submitFunc" class="bg-white p-5 my-5 rounded shadow grid grid-cols-1 gap-4">
+    <!-- Title -->
     <div class="col-span-1">
       <input type="text" class="form-control"
         v-model="newsData.title"
         ref="titleInput"
         placeholder="Title" required>
     </div>
+    <!-- Content -->
     <div class="col-span-1">
       <textarea cols="30" rows="8" class="form-control"
         v-model="newsData.content"
         placeholder="Content" required>
       </textarea>
     </div>
-    <slot name="submit_btn">
-
-    </slot>
+    <!-- Submit button -->
+    <slot name="submit_btn"></slot>
   </form>
+
+  <!-- Back link -->
   <div class="text-center">
     <Button @click.native="listNews">回最新消息</Button>
   </div>
@@ -24,11 +27,15 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 import Card from "../../components/Card.vue";
 import Button from "../../components/Button.vue";
 
 export default {
+  components: {
+    Card,
+    Button,
+  },
   props: {
     id: {
       required: false,
@@ -45,10 +52,6 @@ export default {
         content: this.defaultContent,
       }
     }
-  },
-  components: {
-    Card,
-    Button,
   },
   mounted() {
     this.$refs.titleInput.focus()

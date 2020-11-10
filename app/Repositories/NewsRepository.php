@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 /**
  * class NewsRepository
  *
- * @property News $model
+ * @property \App\Models\News $model
  */
 class NewsRepository extends EloquentRepository
 {
+    public $model;
+
     public function __construct(News $model)
     {
         parent::__construct($model);
@@ -23,6 +25,11 @@ class NewsRepository extends EloquentRepository
             'title' => 'required',
             'content' => 'required',
         ]);
+    }
+
+    public function getByPaginate($perPage = null)
+    {
+        return $this->model->paginate($perPage);
     }
 
     public function createNews(Request $request)

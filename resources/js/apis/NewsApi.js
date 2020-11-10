@@ -1,7 +1,9 @@
 class NewsApi {
 
-  fetchNews() {
-    return axios.get(base_url('api/news/fetch')).then(res => res.data);
+  fetchNews(page = 1) {
+    return axios.get(base_url('api/news/fetch'), {
+      params: { page: page },
+    });
   }
 
   fetchNewsById(id) {
@@ -13,7 +15,7 @@ class NewsApi {
   createNews({ title, content }) {
     return axios.post(base_url('api/news'), {
       title: title,
-      content: content,
+      content: content, //
     }).then(res => res.data);
   }
 
@@ -22,7 +24,7 @@ class NewsApi {
       _method: 'patch',
       title: title,
       content: content,
-    })
+    });
   }
 
   deleteNews(id) {

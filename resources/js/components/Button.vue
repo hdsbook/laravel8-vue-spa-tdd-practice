@@ -1,5 +1,7 @@
 <template>
-  <component :is="tagType" :to="to" :type="type" class="btn"><slot /></component>
+  <component :is="tagType" :to="to" :type="type" class="btn">
+    <slot />
+  </component>
 </template>
 
 <script>
@@ -14,37 +16,10 @@ export default {
   },
   computed: {
     tagType() {
+      // if has attribute `to`: be a router-link
+      // else : be a button
       return this.to ? 'router-link' : 'button';
     }
   }
 }
 </script>
-
-<style lang="sass" scoped>
-.btn
-  @apply px-3 py-1 font-semibold text-cool-gray-700
-  @apply border box-border rounded inline-block cursor-pointer select-none
-  @apply duration-100
-  &:hover
-    @apply bg-gray-200
-  &.success
-    @apply border-green-500 text-green-500
-    &:hover
-      @apply bg-green-500 text-white
-  &.primary
-    @apply border-blue-500 text-blue-500
-    &:hover
-      @apply bg-blue-500 text-white
-  &.info
-    @apply border-teal-500 text-teal-500
-    &:hover
-      @apply bg-teal-500 text-white
-  &.warning
-    @apply border-yellow-500 text-yellow-500
-    &:hover
-      @apply bg-yellow-500 text-white
-  &.danger
-    @apply border-red-500 text-red-500
-    &:hover
-      @apply bg-red-500 text-white
-</style>

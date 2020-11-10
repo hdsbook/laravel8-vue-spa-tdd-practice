@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
  */
 class NewsController extends Controller
 {
+    protected $perPage = 5;
+
     public function __construct(NewsRepository $newsRepo)
     {
         $this->newsRepo = $newsRepo;
@@ -24,7 +26,7 @@ class NewsController extends Controller
 
     public function fetchNews(Request $request)
     {
-        $news = $this->newsRepo->getAll();
+        $news = $this->newsRepo->getByPaginate($this->perPage);
         return response()->json($news);
     }
 

@@ -1,0 +1,42 @@
+// 因為 laravel-vue-pagination 套件是套用 bootstrap 4 的樣式 class
+// 所以在此作 bootstrap 4 => tailwind 對於 pagination 的樣式轉換
+
+.pagination
+  @apply flex
+  &.justify-content-start
+    @apply justify-start
+  &.justify-content-center
+    @apply justify-center
+  &.justify-content-end
+    @apply justify-end
+  &.pagination-sm .page-item
+    @apply text-sm leading-3
+  &.pagination-lg .page-item
+    @apply text-lg leading-7
+  .page-item
+    @apply inline-flex items-center
+    @apply transition duration-150 ease-in-out
+    @apply bg-white border border-gray-400
+    @apply text-gray-700 text-base font-medium leading-5
+    &:first-child, &.pagination-prev-nav
+      @apply rounded-l-md
+    &:last-child, &.pagination-next-nav
+      @apply rounded-r-md
+    &:not(:last-child), &.pagination-page-nav
+      @apply border-r-0
+    a
+      @apply h-full m-0 px-4 py-2
+
+  .page-item:active
+    @apply bg-gray-200 text-gray-700
+  .page-item:focus
+    @apply outline-none border-blue-300 shadow-outline
+  .page-item:hover
+    @apply bg-gray-200
+
+  .page-item.active
+    @apply bg-blue-500 text-white
+  .page-item.disabled
+    @apply bg-gray-200 text-gray-700 opacity-50
+    a
+      @apply cursor-not-allowed

@@ -1,22 +1,28 @@
 <template>
 <div class="md:w-2/3 w-full mx-auto py-2">
-  <!-- 新增按扭 -->
-  <div class="text-right">
-    <Button to="/news/create" class="success">Create news</Button>
-  </div>
+  <!-- show -->
+  <NewsShow v-if="mode === 'show'" :newsData="targetNews" />
 
-  <div v-if="!allNews.length" class="text-center p-4">載入中…</div>
+  <!-- edit -->
+  <NewsEdit v-else-if="mode === 'edit'" :newsData="targetNews" />
 
-  <!-- 最新消息列表 -->
-  <template v-if="mode==='list'">
+  <!-- list -->
+  <template v-else-if="mode === 'list'">
+    <div class="text-right">
+      <Button to="/news/create" class="success">Create news</Button>
+    </div>
+
+    <div v-if="!allNews.length" class="text-center p-4">
+      載入中…
+    </div>
+
     <Card v-for="news in allNews" :key="news.id" v-bind="news">
-      <div slot="card_body" class="card-body truncate">
+      <div slot="body" class="card-body truncate">
         {{ news.content }}
       </div>
 
-      <div slot="card_footer" class="card-footer">
-        <Button class="text-sm danger"
-          @click.native="deleteNews(news.id)">
+      <div slot="footer" class="card-footer">
+        <Button @click.native="deleteNews(news.id)" class="text-sm danger">
           Delete
         </Button>
         <div class="float-right">
@@ -29,24 +35,32 @@
         </div>
       </div>
     </Card>
+
+    <Pagination
+      :data="newsPagination"
+      @pagination-change-page="fetchNews"
+      :show-disabled="true"
+      align="center"
+      size="default" />
+    <!--
+      Pagination settings (https://www.npmjs.com/package/laravel-vue-pagination)
+        align: left, center, right
+        size: default, small, large
+    -->
   </template>
-
-  <!-- Show -->
-  <NewsShow v-if="mode==='show'" />
-
-  <!-- Edit -->
-  <NewsEdit v-if="mode==='edit'" :newsData="selectedNews" />
 </div>
 </template>
 
 <script>
 import Vue from "vue";
-import { mapState, mapActions, mapMutations } from 'vuex';
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
 import NewsShow from './NewsShow.vue';
 import NewsEdit from './NewsEdit.vue';
 import Card from "../../components/Card.vue";
 import Button from "../../components/Button.vue";
+
+import Pagination from 'laravel-vue-pagination';
 
 export default {
   components: {
@@ -54,25 +68,31 @@ export default {
     Button,
     NewsShow,
     NewsEdit,
+    Pagination
   },
-  computed: mapState('news', [
-    'mode',
-    'allNews',
-    'selectedNews',
-  ]),
-  created() {
-    this.$store.dispatch('news/fetchNews');
+  computed: {
+    ...mapState('news', [
+      'mode',
+      'targetNews',
+      'newsPagination',
+    ]),
+    ...mapGetters('news', [
+      'allNews',
+    ]),
   },
   methods: {
     ...mapMutations('news', [
-      'setSelectedNews',
       'setMode',
     ]),
     ...mapActions('news', [
+      'fetchNews',
       'deleteNews',
       'editNews',
       'showNews',
-    ])
+    ]),
+  },
+  mounted() {
+    this.fetchNews();
   },
 };
 </script>
