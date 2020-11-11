@@ -3,7 +3,7 @@ export default {
   fetchNews(page = 1) {
     return axios.get(base_url('api/news/fetch'), {
       params: { page: page },
-    });
+    }).then(res => res.data);
   },
 
   fetchNewsById(id) {

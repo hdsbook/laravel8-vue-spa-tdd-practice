@@ -23,7 +23,7 @@
   </form>
 
   <div class="text-center">
-    <Button @click.native="listNews">回最新消息</Button>
+    <Button :to="{ name: 'news' }">回最新消息</Button>
   </div>
 </div>
 </template>
@@ -56,7 +56,6 @@ export default {
     submitFunc() {
       this.$emit('submit', this.submitData)
     },
-    ...mapActions('news', ['listNews']),
   }
 }
 </script>

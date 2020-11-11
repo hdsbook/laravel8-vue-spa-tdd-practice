@@ -1,11 +1,12 @@
+import { formatObjArrayDate } from '../../plugins/moment';
+
 import API from '../../api/news';
-import router from '../../router';
+import { redirect } from '../../router';
 
 export default {
   namespaced: true,
+
   state: () => ({
-    mode: 'list',  // list、show、edit
-    targetNews: null,
     newsPagination: {},
   }),
 
@@ -19,43 +20,37 @@ export default {
   },
 
   mutations: {
-    // setters
-    setNewsPagination: (state, newsPagination) => state.newsPagination = newsPagination,
-    setTargetNews: (state, payload) => state.targetNews = payload,
-    setMode: (state, payload) => state.mode = payload,
+    setNewsPagination: (state, payload) => state.newsPagination = payload,
   },
 
   actions: {
-    changeMode({ commit }, [mode, news = null]) {
-      // list(列表), edit(編輯), show(閱讀) 均在 `/news` 這個 route 下切換
-      if (router.currentRoute.name !== 'news') {
-        router.push({ name: 'news' });
-      }
-      commit('setTargetNews', news);
-      commit('setMode', mode);
-    },
-    listNews: ({ dispatch }) => dispatch('changeMode', ['list']),
-    editNews: ({ dispatch }, news) => dispatch('changeMode', ['edit', news]),
-    showNews: ({ dispatch }, news) => dispatch('changeMode', ['show', news]),
-
-    // fetch, create, update, delete
-    fetchNews({ commit, dispatch, getters }, page = null) {
+    fetchNews({ commit, getters }, page = null) {
       page = page || getters.currentPage;
       return API.fetchNews(page)
-        .then(res => commit('setNewsPagination', res.data))
-        .then(() => dispatch('listNews'));
+        .then(res => {
+          res.data = formatObjArrayDate(
+            res.data,
+            'created_at',
+            'YYYY-MM-DD HH:MM'
+          );
+          commit('setNewsPagination', res);
+        });
     },
-    createNews({ dispatch }, newsData) {
+    fetchNewsById({ getters }, id) {
+      const news = getters.allNews.find(news => news.id == id);
+      return news ? news : API.fetchNewsById(id);
+    },
+    createNews(context, newsData) {
       return API.createNews(newsData)
-        .then(() => dispatch('fetchNews'));
+        .then(() => redirect('news'));
     },
-    updateNews({ dispatch }, newsData) {
+    updateNews(context, newsData) {
       return API.updateNews(newsData)
-        .then(() => dispatch('fetchNews'));
+        .then(() => redirect('news'));
     },
-    deleteNews({ dispatch }, id) {
+    deleteNews(context, id) {
       return API.deleteNews(id)
-        .then(() => dispatch('fetchNews'));
+        .then(() => redirect('news'));
     },
   },
 };

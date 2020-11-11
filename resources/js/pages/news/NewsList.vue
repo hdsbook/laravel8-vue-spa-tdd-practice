@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="md:w-2/3 w-full mx-auto p-2">
     <div class="text-right">
       <Button to="/news/create" class="success">Create news</Button>
     </div>
@@ -18,10 +18,11 @@
           Delete
         </Button>
         <div class="float-right">
-          <Button @click.native="editNews(news)" class="text-sm primary">
+          {{ news.created_at }}
+          <Button :to="{ name: 'news.edit', params: { id: news.id } }" class="text-sm primary">
             Edit
           </Button>
-          <Button @click.native="showNews(news)" class="text-sm ">
+          <Button :to="{ name: 'news.show', params: { id: news.id } }" class="text-sm ">
             Read
           </Button>
         </div>
@@ -37,6 +38,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -47,8 +49,6 @@ export default {
   methods: mapActions('news', [
     'fetchNews',
     'deleteNews',
-    'editNews',
-    'showNews',
   ]),
   mounted() {
     this.fetchNews();
