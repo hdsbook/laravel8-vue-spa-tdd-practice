@@ -6,7 +6,7 @@
     <div class="col-span-1">
       <input type="text" class="form-control"
         v-model="submitData.title"
-        ref="titleInput"
+        v-focus
         placeholder="Title" required>
     </div>
 
@@ -45,9 +45,6 @@ export default {
         content: this.defaultContent,
       }
     }
-  },
-  mounted() {
-    this.$refs.titleInput.focus()
   },
   methods: {
     submitFunc() {

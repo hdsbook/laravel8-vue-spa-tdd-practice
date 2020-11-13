@@ -4,6 +4,7 @@ import Vue from 'vue';
 import router from './router';
 import store from './store';
 
+import './directives';
 import './components';
 
 const app = new Vue({
