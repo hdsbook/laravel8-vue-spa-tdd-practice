@@ -40,16 +40,19 @@ export default {
       const news = getters.allNews.find(news => news.id == id);
       return news ? news : API.fetchNewsById(id);
     },
-    createNews(context, newsData) {
+    createNews({ dispatch }, newsData) {
       return API.createNews(newsData)
+        .then(() => dispatch('fetchNews'))
         .then(() => redirect('news'));
     },
-    updateNews(context, newsData) {
+    updateNews({ dispatch }, newsData) {
       return API.updateNews(newsData)
+        .then(() => dispatch('fetchNews'))
         .then(() => redirect('news'));
     },
-    deleteNews(context, id) {
+    deleteNews({ dispatch }, id) {
       return API.deleteNews(id)
+        .then(() => dispatch('fetchNews'))
         .then(() => redirect('news'));
     },
   },
