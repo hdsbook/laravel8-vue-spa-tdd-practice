@@ -1,5 +1,3 @@
-import { formatObjArrayDate } from '../../plugins/moment';
-
 import API from '../../api/news';
 import { redirect } from '../../router';
 
@@ -27,14 +25,7 @@ export default {
     fetchNews({ commit, getters }, page = null) {
       page = page || getters.currentPage;
       return API.fetchNews(page)
-        .then(res => {
-          res.data = formatObjArrayDate(
-            res.data,
-            'created_at',
-            'YYYY-MM-DD HH:MM'
-          );
-          commit('setNewsPagination', res);
-        });
+        .then(res => commit('setNewsPagination', res));
     },
     fetchNewsById({ getters }, id) {
       const news = getters.allNews.find(news => news.id == id);

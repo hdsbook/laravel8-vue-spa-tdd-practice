@@ -18,7 +18,7 @@
           Delete
         </Button>
         <div class="float-right">
-          {{ news.created_at }}
+          {{ news.created_at | dateformat }}
           <Button :to="{ name: 'news.edit', params: { id: news.id } }" class="text-sm primary">
             Edit
           </Button>
