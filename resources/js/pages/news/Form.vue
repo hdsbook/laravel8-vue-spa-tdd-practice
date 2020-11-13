@@ -33,12 +33,9 @@ import { mapActions } from 'vuex';
 
 export default {
   props: {
-    id: {
-      required: false,
-      default: null,
-    },
-    defaultTitle: String,
-    defaultContent: String,
+    id: { type: Number, default: null, required: false },
+    defaultTitle: { type: String, default: '' },
+    defaultContent: { type: String, default: '' },
   },
   computed: {
     submitData() {

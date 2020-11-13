@@ -9,9 +9,13 @@ export default {
   name: "Button",
   props: {
     to: {
+      type: [String, Object],
+      default: '',
       required: false,
     },
     type: {
+      type: String, // button type: (button, submit ...)
+      default: '',
       required: false,
     }
   },
