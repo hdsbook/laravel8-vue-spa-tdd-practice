@@ -9,7 +9,16 @@ window._ = require('lodash');
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+// set default headers (csrf/api token)
+const csrfMetaTag = document.querySelector('meta[name="csrf-token"]');
+const apiMetaTag = document.querySelector('meta[name="api-token"]');
+csrfMetaTag
+  ? window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfMetaTag.getAttribute('content')
+  : console.log('csrf token not found');
+apiMetaTag
+  ? window.axios.defaults.headers.common['Authorization'] = "Bearer " + apiMetaTag.getAttribute('content')
+  : console.log('api token not found');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
