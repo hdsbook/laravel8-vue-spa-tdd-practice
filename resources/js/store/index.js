@@ -15,6 +15,7 @@ const modules = requireContext
     return { ...modules, [name]: module };
   }, {});
 
+// console.log(modules);
 const store = new Vuex.Store({
   modules,
 });
