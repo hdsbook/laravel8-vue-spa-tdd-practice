@@ -1,9 +1,10 @@
 import { redirect } from "../../router";
+import Cookie from 'js-cookie';
 
 // state
 export const state = {
   user: null,
-  token: null,
+  token: Cookie.get('token'),
 };
 
 // getters
@@ -19,17 +20,21 @@ export const getters = {
 // mutations
 export const mutations = {
   setUser: (state, payload) => state.user = payload,
-  setAuth: (state, { user, token }) => {
+  setAuth: (state, { user, token, remember }) => {
     state.user = user ? user : null;
     state.token = token ? token : null;
     if (token) {
       window.axios.defaults.headers.common['Authorization'] = "Bearer " + token;
+      Cookie.set('token', token, {
+        expires: remember ? 365 : null
+      })
     }
   },
   unsetAuth: state => {
     state.user = null;
     state.token = null;
     window.axios.defaults.headers.common['Authorization'] = null;
+    Cookie.remove('token');
   }
 };
 
@@ -37,22 +42,25 @@ export const mutations = {
 export const actions = {
   async fetchUser({ commit }) {
     try {
-      await axios.get(base_url('api/user')).then(res => {
-        commit('setAuth', res.data);
-      });
+      const { data } = await axios.get(base_url('api/user'));
+      commit('setAuth', data);
     } catch (e) {
       commit('unsetAuth');
     }
   },
 
-  async login({ commit, dispatch }, loginData) {
-    await axios.post('login', loginData);
-    await dispatch('fetchUser');
+  async login({ commit }, loginData) {
+    const { data } = await axios.post(base_url('login'), loginData);
+
+    if (loginData.remember) {
+      data.remember = loginData.remember;
+    }
+    commit('setAuth', data);
     redirect('home');
   },
 
   logout({ commit }) {
-    return axios.post('logout').then(() => {
+    return axios.post(base_url('logout')).then(() => {
       commit('unsetAuth');
       location.reload();
     });
