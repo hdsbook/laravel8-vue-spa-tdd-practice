@@ -6,7 +6,9 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Http\Responses\LoginResponse;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -29,8 +31,8 @@ class FortifyServiceProvider extends ServiceProvider
     protected function registerResponseBindings()
     {
         $this->app->singleton(
-            Laravel\Fortify\Contracts\LoginResponse::class,
-            App\Http\Responses\LoginResponse::class
+            LoginResponseContract::class,
+            LoginResponse::class
         );
     }
 

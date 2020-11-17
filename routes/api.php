@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    $user = $request->user();
-    $user['userRoles'] = $user->userRoles;
-    return $user;
+Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'fetchAuthUser']);
+
+// news
+Route::prefix('news')->group(function () {
+    Route::get('fetch', [NewsController::class, 'fetchNews'])->name('news.fetch');
+    Route::get('find', [NewsController::class, 'fetchNewsById'])->name('news.find');
 });
+Route::resource('news', NewsController::class)
+    ->only(['store', 'update', 'destroy'])
+    ->middleware('auth:sanctum');

@@ -2,7 +2,7 @@
 <div id="app" class="min-h-screen bg-gray-100">
     <!-- Page Heading -->
     <header class="bg-white shadow sticky w-full">
-        <Navbar />
+      <Navbar />
     </header>
 
     <!-- Page Content -->

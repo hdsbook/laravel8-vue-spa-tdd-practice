@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <!-- header -->
-    <div class="card-header">
+    <div class="card-header" v-if="title">
       <h1 class="card-title">{{ title }}</h1>
     </div>
 

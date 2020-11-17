@@ -25,7 +25,7 @@
       表單列表
     </router-link>
 
-    <template v-if="isAuth">
+    <template v-if="user">
       <div class="relative">
         <button @blur="dropDownOpen = false" @click="dropDownOpen = !dropDownOpen" class="flex flex-row items-center w-full px-4 py-2 m-1 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
           <span>
@@ -39,24 +39,23 @@
             {{ userRoles }}
             <!-- Auth::user()->userRoles->implode('role', '、')) -->
           </div>
-          <a class="dropdown-option"
-            href="">
+          <a class="dropdown-option" @mousedown="profile">
             個人資料
           </a>
 
           <div class="border-t border-gray-100"></div>
 
-          <div class="dropdown-option" @mousedown="logOut">
+          <div class="dropdown-option" @mousedown="logout">
             Logout
           </div>
         </div>
         </div>
       </div>
     </template>
-    <template v-if="!isAuth">
-      <a :href="loginUrl" class="nav-link">
+    <template v-if="!user">
+      <router-link :to="{name: 'login'}" class="nav-link">
         Login
-      </a>
+      </router-link>
       <a :href="registerUrl" class="nav-link">
         Register
       </a>
@@ -74,23 +73,16 @@ export default {
   data: () => ({
     navOpen: false,
     dropDownOpen: false,
-    loginUrl: base_url('login'),
     registerUrl: base_url('register'),
+    profileUrl: base_url('user/profile'),
   }),
-  computed: {
-    ...mapState('auth', ['user']),
-    ...mapGetters('auth', {
-      isAuth: 'check',
-    }),
-    userRoles() {
-      console.log(this.user);
-      console.log(_.map(this.user.userRoles, 'role'));
-      return this.user
-        ? _.join(_.map(this.user.userRoles, 'role'), '、')
-        : '';
+  computed: mapGetters('auth', ['user', 'userRoles']),
+  methods: {
+    ...mapActions('auth', ['logout']),
+    profile() {
+      location.href = this.profileUrl;
     }
-  },
-  methods: mapActions('auth', ['logOut'])
+  }
 }
 </script>
 

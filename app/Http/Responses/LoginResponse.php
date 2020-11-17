@@ -14,8 +14,16 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
+        $user = auth()->user();
+        $user->tokens()->delete();
+        $token = $user->createToken('my-app-token')->plainTextToken;
+        $result = [
+            'two_factor' => false,
+            'token' => $token,
+            'user' => $user
+        ];
         return $request->wantsJson()
-            ? response()->json(['two_factor' => false, 'user' => auth()->user()])
+            ? response()->json($result)
             : redirect()->intended(config('fortify.home'));
     }
 }
