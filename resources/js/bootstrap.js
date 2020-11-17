@@ -13,7 +13,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // set default headers (csrf token)
 const csrfMetaTag = document.querySelector('meta[name="csrf-token"]');
 csrfMetaTag
-  ? window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfMetaTag.getAttribute('content')
+  ? window.axios.defaults.headers.common['X-XSRF-TOKEN'] = csrfMetaTag.getAttribute('content')
   : console.log('csrf token not found');
 
 /**
