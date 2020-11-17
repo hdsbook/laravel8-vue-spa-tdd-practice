@@ -19,6 +19,7 @@ export const getters = {
 // mutations
 export const mutations = {
   setNewsPagination: (state, payload) => state.newsPagination = payload,
+  setAllNews: (state, payload) => state.newsPagination.data = payload,
 };
 
 // actions
@@ -42,7 +43,8 @@ export const actions = {
       .then(() => dispatch('fetchNews'))
       .then(() => redirect('news'));
   },
-  deleteNews({ dispatch }, id) {
+  deleteNews({ dispatch, commit, getters }, id) {
+    commit('setAllNews', getters.allNews.filter(news => news.id !== id))
     return API.deleteNews(id)
       .then(() => dispatch('fetchNews'))
       .then(() => redirect('news'));
