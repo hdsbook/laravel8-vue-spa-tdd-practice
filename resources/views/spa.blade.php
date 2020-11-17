@@ -20,17 +20,7 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
     <body class="font-sans antialiased">
-        <div id="app" class="min-h-screen bg-gray-100">
-            <!-- Page Heading -->
-            <header class="bg-white shadow sticky w-full">
-                @include('spa-navbar')
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                <router-view></router-view>
-            </main>
-        </div>
+        <div id="app"></div>
 
         <!-- Scripts -->
         <script>

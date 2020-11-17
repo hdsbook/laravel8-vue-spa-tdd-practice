@@ -8,11 +8,11 @@ import './directives';
 import './filters';
 import './components';
 
+import App from './components/App.vue';
+
 const app = new Vue({
 	el: '#app',
-	data: {
-		open: false,
-	},
 	router,
 	store,
+	render: h => h(App),
 });
