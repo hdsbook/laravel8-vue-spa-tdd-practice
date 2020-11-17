@@ -38,4 +38,19 @@ class UserRepository extends EloquentRepository
     {
         return $user->userRoles()->where('role', $role)->count() > 0;
     }
+
+    /**
+     * create token
+     *
+     * @param \App\Models\User $user
+     * @param string $token_name
+     * @return string
+     */
+    public static function createToken($user)
+    {
+        $name = 'token';
+        // $user->tokens()->delete();
+        $user->tokens()->where('name', $name)->delete();
+        return $user->createToken($name, ['*'])->plainTextToken;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Responses;
 
+use App\Repositories\UserRepository;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 
 class LoginResponse implements LoginResponseContract
@@ -15,9 +16,8 @@ class LoginResponse implements LoginResponseContract
     public function toResponse($request)
     {
         // generate new token
-        $user = auth()->user();
-        $user->tokens()->delete();
-        $token = $user->createToken('my-app-token')->plainTextToken;
+        $user = $request->user();
+        $token = UserRepository::createToken($user);
 
         $result = [
             'two_factor' => false,

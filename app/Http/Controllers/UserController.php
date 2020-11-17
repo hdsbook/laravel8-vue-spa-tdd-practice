@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,8 +12,8 @@ class UserController extends Controller
         $user = $request->user();
         $user->userRoles;
 
-        $user->tokens()->delete();
-        $token = $user->createToken('my-app-token')->plainTextToken;
+        $token = UserRepository::createToken($user);
+
         return [
             'user' => $user,
             'token' => $token,
