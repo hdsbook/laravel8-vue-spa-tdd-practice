@@ -1,5 +1,6 @@
 import { redirect } from "../../router";
 import Cookie from 'js-cookie';
+import axios from '../../plugins/axios';
 
 // state
 export const state = {
@@ -24,7 +25,6 @@ export const mutations = {
     state.user = user ? user : null;
     state.token = token ? token : null;
     if (token) {
-      window.axios.defaults.headers.common['Authorization'] = "Bearer " + token;
       Cookie.set('token', token, {
         expires: remember ? 365 : null
       })
@@ -33,7 +33,6 @@ export const mutations = {
   unsetAuth: state => {
     state.user = null;
     state.token = null;
-    window.axios.defaults.headers.common['Authorization'] = null;
     Cookie.remove('token');
   }
 };
