@@ -17,7 +17,9 @@ class NewsSeeder extends Seeder
     {
         $user = User::inRandomOrder()->first();
         if ($user) {
-            $user->news()->save(News::factory()->make());
+            for ($i = 0; $i < 10; $i++) {
+                $user->news()->save(News::factory()->make());
+            }
         }
     }
 }

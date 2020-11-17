@@ -3,6 +3,7 @@ import { redirect } from '../../router';
 
 // state
 export const state = {
+  isLoading: true,
   newsPagination: {},
 };
 
@@ -12,22 +13,30 @@ export const getters = {
   currentPage: (state, getters) => {
     return (getters.allNews.length > 0)
       ? state.newsPagination.current_page
-      : 1;
+      : 1; // when current page has no news, return to page 1
   }
 };
 
 // mutations
 export const mutations = {
+  setIsLoading: (state, payload) => state.isLoading = payload,
   setNewsPagination: (state, payload) => state.newsPagination = payload,
-  setAllNews: (state, payload) => state.newsPagination.data = payload,
+  removeNews: (state, id) => {
+    state.newsPagination.data
+      = state.newsPagination.data.filter(news => news.id !== id);
+  },
 };
 
 // actions
 export const actions = {
-  fetchNews({ commit, getters }, page = null) {
+  fetchNews({ commit, getters, state }, page = null) {
     page = page || getters.currentPage;
+    commit('setIsLoading', true);
     return API.fetchNews(page)
-      .then(res => commit('setNewsPagination', res));
+      .then(res => commit('setNewsPagination', res))
+      .then(() => {
+        commit('setIsLoading', false);
+      });
   },
   fetchNewsById({ getters }, id) {
     const news = getters.allNews.find(news => news.id == id);
@@ -43,10 +52,9 @@ export const actions = {
       .then(() => dispatch('fetchNews'))
       .then(() => redirect('news'));
   },
-  deleteNews({ dispatch, commit, getters }, id) {
-    commit('setAllNews', getters.allNews.filter(news => news.id !== id))
+  deleteNews({ dispatch, commit }, id) {
     return API.deleteNews(id)
-      .then(() => dispatch('fetchNews'))
-      .then(() => redirect('news'));
+      .then(() => commit('removeNews', id))
+      .then(() => dispatch('fetchNews'));
   },
 };
