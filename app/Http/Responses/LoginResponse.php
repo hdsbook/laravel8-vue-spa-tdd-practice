@@ -14,9 +14,11 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
+        // generate new token
         $user = auth()->user();
         $user->tokens()->delete();
         $token = $user->createToken('my-app-token')->plainTextToken;
+
         $result = [
             'two_factor' => false,
             'token' => $token,
