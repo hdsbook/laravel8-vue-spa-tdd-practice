@@ -23,11 +23,11 @@ export default {
     </label>
     <input class="form-input rounded-md shadow-sm block mt-1 w-full"
       v-model="submitData.email"
+      v-focus
       id="email"
       type="email"
       name="email"
-      required="required"
-      autofocus="autofocus">
+      required="required">
   </div>
   <div class="mt-4">
     <label class="block font-medium text-sm text-gray-700" for="password">
