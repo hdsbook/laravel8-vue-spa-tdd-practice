@@ -8,7 +8,8 @@ cd laravel8-vue-spa-tdd-practice
 2. composer, npm 初始化
 
 ```
-composer install && npm install
+composer install
+npm install
 ```
 
 3. database 初始化
@@ -23,7 +24,7 @@ php artisan migrate
 4. storage permission setting
 
 ```
-php aritisan storage:link
+php artisan storage:link
 chmod -R 775 storage
 chmod -R 775 bootstrap/cache
 ```
