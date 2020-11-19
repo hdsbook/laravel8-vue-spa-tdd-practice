@@ -29,13 +29,13 @@ chmod -R 775 storage
 chmod -R 775 bootstrap/cache
 ```
 
-5. 打包 assets
+5. 打包 assets，執行：
 
 ```
 npm run watch
 ```
 
-6. 運行專案
+6. 運行專案，另開終端機，執行：
 
 ```
 php artisan serve

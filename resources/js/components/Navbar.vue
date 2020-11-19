@@ -17,10 +17,6 @@
     <router-link to="/news" class="nav-link">
       最新消息
     </router-link>
-
-    <router-link to="/users" class="nav-link">
-      使用者管理
-    </router-link>
     <router-link to="/forms" class="nav-link">
       表單列表
     </router-link>
