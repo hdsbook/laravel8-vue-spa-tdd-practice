@@ -43,14 +43,16 @@ class UserRepository extends EloquentRepository
      * create token
      *
      * @param \App\Models\User $user
-     * @param string $token_name
+     * @param string $name
+     * @param array $abilities
      * @return string
      */
-    public static function createToken($user)
-    {
-        $name = 'token';
-        // $user->tokens()->delete();
+    public static function createToken(
+        $user,
+        $name = 'token',
+        $abilities = ['*']
+    ) {
         $user->tokens()->where('name', $name)->delete();
-        return $user->createToken($name, ['*'])->plainTextToken;
+        return $user->createToken($name, $abilities)->plainTextToken;
     }
 }
