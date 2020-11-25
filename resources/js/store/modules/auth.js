@@ -12,7 +12,7 @@ export const state = {
 export const getters = {
   user: state => state.user,
   token: state => state.token,
-  check: state => state.user !== null,
+  isAuth: state => state.user !== null,
   userRoles: state => state.user
     ? _.join(_.map(state.user.user_roles, 'role'), '、')
     : '',
@@ -22,6 +22,7 @@ export const getters = {
 export const mutations = {
   setUser: (state, payload) => state.user = payload,
   setAuth: (state, { user, token, remember }) => {
+    console.log(user);
     state.user = user ? user : null;
     state.token = token ? token : null;
     if (token) {

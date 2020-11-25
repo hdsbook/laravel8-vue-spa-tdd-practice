@@ -21,7 +21,7 @@
       表單列表
     </router-link>
 
-    <template v-if="user">
+    <template v-if="isAuth">
       <div class="relative">
         <button @blur="dropDownOpen = false" @click="dropDownOpen = !dropDownOpen" class="flex flex-row items-center w-full px-4 py-2 m-1 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
           <span>
@@ -48,7 +48,7 @@
         </div>
       </div>
     </template>
-    <template v-if="!user">
+    <template v-if="!isAuth">
       <router-link :to="{name: 'login'}" class="nav-link">
         Login
       </router-link>
@@ -72,7 +72,7 @@ export default {
     registerUrl: base_url('register'),
     profileUrl: base_url('user/profile'),
   }),
-  computed: mapGetters('auth', ['user', 'userRoles']),
+  computed: mapGetters('auth', ['user', 'userRoles', 'isAuth']),
   methods: {
     ...mapActions('auth', ['logout']),
     profile() {
