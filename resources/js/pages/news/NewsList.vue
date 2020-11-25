@@ -1,7 +1,7 @@
 <template>
   <div class="md:w-2/3 w-full mx-auto p-2">
     <div class="text-right">
-      <Button to="/news/create" class="success">Create news</Button>
+      <Button v-if="isAuth" to="/news/create" class="success">Create news</Button>
     </div>
 
     <div v-if="isLoading" class="text-center p-4">
@@ -16,13 +16,13 @@
           {{ news.content }}
         </div>
 
-        <div slot="footer" class="card-footer">
-          <Button @click.native="deleteNews(news.id)" class="text-sm danger">
+        <div slot="footer" class="card-footer text-right">
+          <Button v-if="isAuth" @click.native="deleteNews(news.id)" class="text-sm danger float-left">
             Delete
           </Button>
-          <div class="float-right">
+          <div>
             {{ news.created_at | dateformat }}
-            <Button :to="{ name: 'news.edit', params: { id: news.id } }" class="text-sm primary">
+            <Button v-if="isAuth" :to="{ name: 'news.edit', params: { id: news.id } }" class="text-sm primary">
               Edit
             </Button>
             <Button :to="{ name: 'news.show', params: { id: news.id } }" class="text-sm ">
@@ -48,6 +48,7 @@ export default {
   computed: {
     ...mapState('news', ['newsPagination', 'isLoading']),
     ...mapGetters('news', ['allNews']),
+    ...mapGetters('auth', ['isAuth']),
   },
   methods: mapActions('news', [
     'fetchNews',
