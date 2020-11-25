@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'fetchAu
 
 // news
 Route::prefix('news')->group(function () {
-    Route::get('fetch', [NewsController::class, 'fetchNews'])->name('news.fetch');
+    Route::get('fetch/{perPage}', [NewsController::class, 'fetchNews'])->name('news.fetch');
     Route::get('find', [NewsController::class, 'fetchNewsById'])->name('news.find');
 });
 Route::resource('news', NewsController::class)

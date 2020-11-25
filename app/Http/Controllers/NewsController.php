@@ -19,12 +19,13 @@ class NewsController extends Controller
     {
         $this->newsRepo = $newsRepo;
         $this->middleware('web');
-        $this->middleware('auth')->only(['store']);
+        $this->middleware('auth')->only(['store', 'update', 'destroy']);
     }
 
-    public function fetchNews(Request $request)
+    public function fetchNews($perPage = null)
     {
-        $news = $this->newsRepo->getByPaginate($this->perPage);
+        $perPage = (int) ($perPage ?: $this->perPage);
+        $news = $this->newsRepo->getByPaginate($perPage);
         return response()->json($news);
     }
 
@@ -42,8 +43,10 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $news = $this->newsRepo->createNews($request);
         return response()->json([
-            'success' => $this->newsRepo->createNews($request),
+            'success' => ($news !== false),
+            'id' => $news ? $news->id : null,
         ]);
     }
 
@@ -56,8 +59,9 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
+        $news = $this->newsRepo->updateNews($request, $news);
         return response()->json([
-            'success' => $this->newsRepo->updateNews($request, $news)
+            'success' => ($news !== false)
         ]);
     }
 
