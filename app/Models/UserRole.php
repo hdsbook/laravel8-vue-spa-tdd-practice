@@ -12,6 +12,7 @@ class UserRole extends Model
     use SoftDeletes;
 
     protected $fillable = ['role'];
+    protected $hidden = ['deleted_at'];
 
     public function user()
     {

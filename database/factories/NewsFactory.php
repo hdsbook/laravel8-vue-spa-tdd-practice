@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\News;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NewsFactory extends Factory
@@ -22,6 +23,7 @@ class NewsFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => User::factory(),
             'title' => $this->faker->name,
             'content' => $this->faker->text
         ];
