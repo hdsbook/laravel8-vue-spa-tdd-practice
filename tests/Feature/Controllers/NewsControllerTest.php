@@ -66,12 +66,15 @@ class NewsControllerTest extends TestCase
         ];
         $response = $this->postJson(route('news.store'), $createData)
             ->assertStatus(200)
-            ->assertJson(['success' => true])
+            ->assertJsonStructure([
+                'success',
+                'id'
+            ])
             ->json();
 
         $this->assertNotNull($response['id']);
-        $news = News::find($response['id']);
 
+        $news = News::find($response['id']);
         $this->assertEquals($createData['title'], $news->title);
         $this->assertEquals($createData['content'], $news->content);
     }
