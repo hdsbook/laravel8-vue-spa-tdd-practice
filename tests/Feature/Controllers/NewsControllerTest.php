@@ -24,13 +24,18 @@ class NewsControllerTest extends TestCase
 
     public function testFetchNews()
     {
+        /** @given page and perPage */
         $perPage = 10;
         $page = 1;
 
+        /** @when fetch news */
         $response = $this->getJson(route('news.fetch', [
             'perPage' => $perPage,
             'page' => $page,
-        ]))->assertStatus(200)->assertJsonStructure([
+        ]));
+
+        /** @then confirm news data */
+        $response->assertStatus(200)->assertJsonStructure([
             'data',
             'current_page',
             'last_page_url',
@@ -52,18 +57,26 @@ class NewsControllerTest extends TestCase
 
     public function testFetchNewsById()
     {
+        /** @given news id */
         $news = News::factory()->create(['user_id' => $this->user]);
-        $this->getJson(route('news.find', [
-            'id' => $news->id
-        ]))->assertJson($news->toArray());
+        $id = $news->id;
+
+        /** @when send fetch request */
+        $response = $this->getJson(route('news.find', ['id' => $id]));
+
+        /** @then confirm news data correct */
+        $response->assertJson($news->toArray());
     }
 
     public function testStore()
     {
+        /** @given create data */
         $createData = [
             'title' => '123',
             'content' => '456'
         ];
+
+        /** @when send create request */
         $response = $this->postJson(route('news.store'), $createData)
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -72,6 +85,7 @@ class NewsControllerTest extends TestCase
             ])
             ->json();
 
+        /** @then confirm created */
         $this->assertNotNull($response['id']);
 
         $news = News::find($response['id']);
@@ -81,16 +95,19 @@ class NewsControllerTest extends TestCase
 
     public function testUpdateNews()
     {
+        /** @given news and update data */
         $news = News::factory()->create(['user_id' => $this->user]);
         $updateData = [
             'title' => '123',
             'content' => '456',
         ];
 
+        /** @when update */
         $this->patchJson(route('news.update', $news), $updateData)
             ->assertStatus(200)
             ->assertJson(['success' => true]);
 
+        /** @then check updated */
         $newsAfter = News::find($news->id);
         $this->assertEquals($newsAfter->title, $updateData['title']);
         $this->assertEquals($newsAfter->content, $updateData['content']);
@@ -98,12 +115,15 @@ class NewsControllerTest extends TestCase
 
     public function testDestroy()
     {
+        /** @given spcific news */
         $news = News::factory()->create(['user_id' => $this->user]);
 
+        /** @when delete */
         $this->deleteJson(route('news.destroy', $news))
             ->assertStatus(200)
             ->assertJson(['success' => true]);
 
+        /** @then check deleted */
         $this->assertSoftDeleted('news', ['id' => $news->id]);
     }
 }
