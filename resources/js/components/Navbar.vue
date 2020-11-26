@@ -4,7 +4,7 @@
 <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
   <div class="flex flex-row items-center justify-between p-4">
     <router-link to="/" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
-        表單發派系統
+        Laravel8 Vue SPA TDD practice
     </router-link>
     <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="navOpen = !navOpen">
         <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
@@ -17,9 +17,9 @@
     <router-link to="/news" class="nav-link">
       最新消息
     </router-link>
-    <router-link to="/forms" class="nav-link">
+    <!-- <router-link to="/forms" class="nav-link">
       表單列表
-    </router-link>
+    </router-link> -->
 
     <template v-if="isAuth">
       <div class="relative">
