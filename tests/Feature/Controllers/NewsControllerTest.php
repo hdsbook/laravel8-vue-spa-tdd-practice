@@ -25,7 +25,7 @@ class NewsControllerTest extends TestCase
     public function testFetchNews()
     {
         $perPage = 10;
-        $page = 11;
+        $page = 1;
 
         $response = $this->getJson(route('news.fetch', [
             'perPage' => $perPage,

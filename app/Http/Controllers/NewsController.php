@@ -22,9 +22,10 @@ class NewsController extends Controller
         $this->middleware('auth')->only(['store', 'update', 'destroy']);
     }
 
-    public function fetchNews($perPage = null)
+    public function fetchNews(Request $request)
     {
-        $perPage = (int) ($perPage ?: $this->perPage);
+
+        $perPage = (int) ($request->perPage ?: $this->perPage);
         $news = $this->newsRepo->getByPaginate($perPage);
         return response()->json($news);
     }
