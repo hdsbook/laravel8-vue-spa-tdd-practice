@@ -53,9 +53,7 @@ class FormControllerTest extends TestCase
         $this->assertDatabaseHas('forms', ['id' => $response['id']]);
 
         $form = Form::find($response['id']);
-        $this->assertEquals(
-            $createData,
-            $form->only(['form_name', 'form_template_id'])
-        );
+        $this->assertEquals($createData['form_name'], $form->form_name);
+        $this->assertEquals($createData['form_template_id'], $form->form_template_id);
     }
 }
