@@ -5,7 +5,6 @@ namespace Tests\Feature\Controllers;
 use App\Models\News;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Models\User;
 use Tests\TestCase;
 
 use function PHPUnit\Framework\assertJson;
@@ -18,8 +17,7 @@ class NewsControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = User::factory()->create();
-        $this->actingAs($this->user);
+        $this->user = $this->signInById(1);
     }
 
     public function testFetchNews()
