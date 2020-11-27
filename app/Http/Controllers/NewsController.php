@@ -24,7 +24,6 @@ class NewsController extends Controller
 
     public function fetchNews(Request $request)
     {
-
         $perPage = (int) ($request->perPage ?: $this->perPage);
         $news = $this->newsRepo->getByPaginate($perPage);
         return response()->json($news);
@@ -55,7 +54,7 @@ class NewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\News $news
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, News $news)

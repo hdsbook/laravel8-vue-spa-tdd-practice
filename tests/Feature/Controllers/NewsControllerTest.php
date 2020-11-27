@@ -41,7 +41,7 @@ class NewsControllerTest extends TestCase
             'per_page',
             'to',
             'total'
-        ])->json();
+        ]);
 
         $this->assertLessThanOrEqual($response['data'], $perPage);
         if (count($response['data'])) {

@@ -17,22 +17,20 @@ use function PHPUnit\Framework\isNull;
  */
 class UserRepositoryTest extends TestCase
 {
-    protected $user;
     protected $userRepo;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->user = new User();
-        $this->userRepo = new UserRepository($this->user);
+        $this->userRepo = new UserRepository();
     }
 
     public function testFindOrCreate()
     {
         /** @given id, target user */
         $id = 10;
-        $targetUser = $this->user->find($id);
+        $targetUser = $this->userRepo->getById($id);
 
         /** @when find or create */
         $user = $this->userRepo->findOrCreate($id);

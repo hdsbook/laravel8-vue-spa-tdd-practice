@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -25,4 +26,12 @@ Route::prefix('news')->group(function () {
 });
 Route::resource('news', NewsController::class)
     ->only(['store', 'update', 'destroy'])
+    ->middleware('auth:sanctum');
+
+// forms
+Route::prefix('forms')->group(function () {
+    //
+});
+Route::resource('form', FormController::class)
+    ->only(['store'])
     ->middleware('auth:sanctum');
