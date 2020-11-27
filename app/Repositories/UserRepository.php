@@ -55,4 +55,17 @@ class UserRepository extends EloquentRepository
         $user->tokens()->where('name', $name)->delete();
         return $user->createToken($name, $abilities)->plainTextToken;
     }
+
+    /**
+     * Find a user by id
+     * if not exist, create a new user
+     *
+     * @param int $id
+     * @return User
+     */
+    public function findOrCreate($id): User
+    {
+        $user = $this->model->find($id);
+        return $user ?: User::factory()->create();
+    }
 }
