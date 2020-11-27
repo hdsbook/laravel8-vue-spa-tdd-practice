@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\Form\SendFormService;
 use App\Models\Form;
-use App\Repositories\FormRepository;
 use Illuminate\Http\Request;
 
 /**
  * class FormController
  *
- * @property FormRepository $formRepo
+ * @property SendFormService $sendFormService
  */
 class FormController extends Controller
 {
-    protected $formRepo;
+    protected $sendFormService;
 
-    public function __construct(FormRepository $formRepo)
+    public function __construct(SendFormService $sendFormService)
     {
-        $this->formRepo = $formRepo;
+        $this->sendFormService = $sendFormService;
     }
 
     /**
@@ -48,8 +48,10 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        $id = null;
-        $form = $this->formRepo->createForm($request);
+        $form = $this->sendFormService->sendForm(
+            $request->form_template_id,
+            $request->form_name
+        );
         $id = $form ? $form->id : null;
 
         return response()->json([
