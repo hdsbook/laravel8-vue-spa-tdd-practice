@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(News::class);
     }
+
+    public function createdForms()
+    {
+        return $this->hasMany(Form::class, 'create_user_id', 'id');
+    }
 }
