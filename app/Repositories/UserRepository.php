@@ -11,9 +11,9 @@ use App\Models\User;
  */
 class UserRepository extends EloquentRepository
 {
-    public function __construct(User $model)
+    public function getModel()
     {
-        parent::__construct($model);
+        return \App\Models\User::class;
     }
 
     /**
@@ -61,9 +61,9 @@ class UserRepository extends EloquentRepository
      * if not exist, create a new user
      *
      * @param int $id
-     * @return User
+     * @return \App\Models\User
      */
-    public function findOrCreate($id): User
+    public function findOrCreate($id)
     {
         $user = $this->model->find($id);
         return $user ?: User::factory()->create();

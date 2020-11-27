@@ -5,14 +5,19 @@ namespace App\Repositories;
 abstract class EloquentRepository
 {
     protected $model;
-    public function __construct($model = null)
+
+    public function __construct()
     {
-        $this->model = $model;
+        $this->setModel();
     }
 
-    public function getModel()
+    public abstract function getModel();
+
+    public function setModel()
     {
-        return $this->model;
+        $this->model = app()->make(
+            $this->getModel()
+        );
     }
 
     public function getAll()

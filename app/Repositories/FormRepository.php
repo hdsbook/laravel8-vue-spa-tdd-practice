@@ -14,9 +14,9 @@ class FormRepository extends EloquentRepository
 {
     public $model;
 
-    public function __construct(Form $model)
+    public function getModel()
     {
-        parent::__construct($model);
+        return \App\Models\Form::class;
     }
 
     public function validateRequest(Request $request)

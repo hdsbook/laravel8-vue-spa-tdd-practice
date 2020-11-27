@@ -12,11 +12,9 @@ use Illuminate\Http\Request;
  */
 class NewsRepository extends EloquentRepository
 {
-    public $model;
-
-    public function __construct(News $model)
+    public function getModel()
     {
-        parent::__construct($model);
+        return \App\Models\News::class;
     }
 
     public function validateRequest(Request $request)
