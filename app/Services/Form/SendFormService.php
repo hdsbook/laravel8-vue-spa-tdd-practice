@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\Form;
+namespace App\Services\Form;
 
 use App\Repositories\FormRepository;
 

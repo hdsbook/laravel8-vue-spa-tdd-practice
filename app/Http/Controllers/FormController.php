@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\Form\SendFormService;
+use App\Services\Form\SendFormService;
 use App\Models\Form;
 use Illuminate\Http\Request;
 

@@ -3,7 +3,7 @@
 namespace Tests\Feature\Repositories;
 
 use App\Models\User;
-use App\Http\Services\Form\SendFormService;
+use App\Services\Form\SendFormService;
 use App\Models\FormTemplate;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
