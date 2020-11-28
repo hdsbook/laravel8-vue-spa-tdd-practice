@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Repositories;
+namespace Tests\Feature\Services;
 
 use App\Models\User;
 use App\Services\Form\SendFormService;
