@@ -11,6 +11,8 @@ use function PHPUnit\Framework\assertJson;
 
 class NewsControllerTest extends TestCase
 {
+    use WithFaker;
+
     protected $user;
 
     protected function setUp(): void
@@ -70,8 +72,8 @@ class NewsControllerTest extends TestCase
     {
         /** @given create data */
         $createData = [
-            'title' => '123',
-            'content' => '456'
+            'title' => $this->faker->name,
+            'content' => $this->faker->text(20)
         ];
 
         /** @when send create request */
@@ -96,8 +98,8 @@ class NewsControllerTest extends TestCase
         /** @given news and update data */
         $news = News::factory()->create(['user_id' => $this->user]);
         $updateData = [
-            'title' => '123',
-            'content' => '456',
+            'title' => $this->faker->name,
+            'content' => $this->faker->text(20),
         ];
 
         /** @when update */

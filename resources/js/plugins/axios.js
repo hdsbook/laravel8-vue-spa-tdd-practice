@@ -24,7 +24,19 @@ axios.interceptors.request.use(request => {
 axios.interceptors.response.use(
   response => response,
   error => {
-    const { status } = error.response;
+    const { status, data } = error.response;
+
+    if (status == 422) {
+      let errorMessage = Object.values(data.errors).map(
+        dataErrors => dataErrors.join("<br>")
+      ).join("<br>");
+
+      quickAlert({
+        icon: 'error',
+        title: data.message,
+        text: errorMessage,
+      });
+    }
 
     if (status >= 500) {
       quickAlert({

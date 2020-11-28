@@ -23,14 +23,14 @@ class SendFormServiceTest extends TestCase
     public function testSendForm()
     {
         // sign in
-        $this->signInById(1);
+        $user = $this->signInById(1);
 
         // 建立表單模版
         $formTemplate = FormTemplate::factory()->create([
-            'create_user_id' => auth()->user()->id
+            'create_user_id' => $user->id
         ]);
 
-        /** @given 表單模版ID、表單名稱 */
+        /** @given 表單名稱、簽核模版ID、表單模版ID */
         $formTemplateId = $formTemplate->id;
         $form_name = $this->faker->name;
 

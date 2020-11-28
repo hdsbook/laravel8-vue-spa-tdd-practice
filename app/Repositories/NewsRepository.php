@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\News\SaveNewsRequest;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -17,30 +18,22 @@ class NewsRepository extends EloquentRepository
         return \App\Models\News::class;
     }
 
-    public function validateRequest(Request $request)
-    {
-        return $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
-    }
-
     public function getByPaginate($perPage = null)
     {
         return $this->model->orderBy('created_at', 'desc')->paginate($perPage);
     }
 
-    public function createNews(Request $request)
+    public function createNews(SaveNewsRequest $request)
     {
-        $data = $this->validateRequest($request);
+        $data = $request->validated();
         return $request->user()
             ? $request->user()->news()->create($data)
             : false;
     }
 
-    public function updateNews(Request $request, News $news)
+    public function updateNews(SaveNewsRequest $request, News $news)
     {
-        $data = $this->validateRequest($request);
+        $data = $request->validated();
         return $news->update($data);
     }
 }

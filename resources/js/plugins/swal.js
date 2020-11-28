@@ -11,7 +11,7 @@ export function quickAlert({
   return Swal.fire({
     icon,
     title,
-    text,
+    html: text,
     reverseButtons,
     confirmButtonText,
     cancelButtonText,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\News\SaveNewsRequest;
 use App\Models\News;
 use App\Repositories\NewsRepository;
 use Illuminate\Http\Request;
@@ -38,10 +39,10 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\News\SaveNewsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveNewsRequest $request)
     {
         $news = $this->newsRepo->createNews($request);
         return response()->json([
@@ -53,11 +54,11 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\News\SaveNewsRequest  $request
      * @param  \App\Models\News $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(SaveNewsRequest $request, News $news)
     {
         $news = $this->newsRepo->updateNews($request, $news);
         return response()->json([

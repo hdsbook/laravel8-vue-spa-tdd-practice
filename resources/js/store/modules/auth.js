@@ -22,7 +22,6 @@ export const getters = {
 export const mutations = {
   setUser: (state, payload) => state.user = payload,
   setAuth: (state, { user, token, remember }) => {
-    console.log(user);
     state.user = user ? user : null;
     state.token = token ? token : null;
     if (token) {
