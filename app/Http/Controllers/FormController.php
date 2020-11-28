@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Form\SendFormRequest;
 use App\Services\Form\SendFormService;
 use App\Models\Form;
 use Illuminate\Http\Request;
@@ -43,14 +44,15 @@ class FormController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Form\SendFormRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SendFormRequest $request)
     {
+        $data = $request->validated();
         $form = $this->sendFormService->sendForm(
-            $request->form_template_id,
-            $request->form_name
+            $data['form_template_id'],
+            $data['form_name']
         );
         $id = $form ? $form->id : null;
 
