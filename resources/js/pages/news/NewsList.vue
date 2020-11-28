@@ -36,6 +36,7 @@
         :data="newsPagination"
         @pagination-change-page="fetchNews"
         :show-disabled="false"
+        :limit="2"
         align="center" />
     </template>
   </div>
