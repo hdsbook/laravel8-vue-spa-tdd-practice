@@ -44,7 +44,8 @@ class NewsController extends Controller
      */
     public function store(SaveNewsRequest $request)
     {
-        $news = $this->newsRepo->createNews($request);
+        $data = $request->validated();
+        $news = $this->newsRepo->createNews($data);
         return response()->json([
             'success' => ($news !== false),
             'id' => $news ? $news->id : null,
@@ -60,7 +61,8 @@ class NewsController extends Controller
      */
     public function update(SaveNewsRequest $request, News $news)
     {
-        $news = $this->newsRepo->updateNews($request, $news);
+        $data = $request->validated();
+        $news = $this->newsRepo->updateNews($data, $news);
         return response()->json([
             'success' => ($news !== false)
         ]);

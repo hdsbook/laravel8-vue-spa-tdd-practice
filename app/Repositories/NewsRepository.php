@@ -23,17 +23,13 @@ class NewsRepository extends EloquentRepository
         return $this->model->orderBy('created_at', 'desc')->paginate($perPage);
     }
 
-    public function createNews(SaveNewsRequest $request)
+    public function createNews($data)
     {
-        $data = $request->validated();
-        return $request->user()
-            ? $request->user()->news()->create($data)
-            : false;
+        return auth()->user()->news()->create($data);
     }
 
-    public function updateNews(SaveNewsRequest $request, News $news)
+    public function updateNews($data, News $news)
     {
-        $data = $request->validated();
         return $news->update($data);
     }
 }
