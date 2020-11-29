@@ -9,6 +9,8 @@ export const state = {
 
 // getters
 export const getters = {
+  isLoading: state => state.isLoading,
+  newsPagination: state => state.newsPagination,
   allNews: state => state.newsPagination.data || [],
   currentPage: (state, getters) => {
     return (getters.allNews.length > 0)

@@ -43,12 +43,11 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapState('news', ['newsPagination', 'isLoading']),
-    ...mapGetters('news', ['allNews']),
+    ...mapGetters('news', ['isLoading', 'newsPagination', 'allNews']),
     ...mapGetters('auth', ['isAuth']),
   },
   methods: mapActions('news', [
