@@ -4,14 +4,16 @@ namespace Tests\Feature\Services\Form;
 
 use App\Models\Form;
 use App\Models\User;
-use App\Repositories\SigningRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Services\Form\CreateSigningService;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CreateSigningServiceTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function testCreateSigning()
     {
         /** @given 表單資料 與 簽核流程資料 */

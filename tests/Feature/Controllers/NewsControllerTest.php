@@ -3,6 +3,7 @@
 namespace Tests\Feature\Controllers;
 
 use App\Models\News;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -11,7 +12,7 @@ use function PHPUnit\Framework\assertJson;
 
 class NewsControllerTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, DatabaseTransactions;
 
     protected $user;
 

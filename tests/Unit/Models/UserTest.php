@@ -7,9 +7,12 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\News;
 use App\Models\UserRole;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserTest extends TestCase
 {
+    use DatabaseTransactions;
+
     protected $user;
 
     protected function setUp(): void

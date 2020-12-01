@@ -3,6 +3,7 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,8 @@ use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function testRegisterPage()
     {
         $response = $this->get(route('register'));

@@ -3,6 +3,7 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,8 @@ use Tests\TestCase;
 
 class ResetPasswordTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function testResetPasswordPage()
     {
         $response = $this->get(route('password.reset', [

@@ -4,6 +4,7 @@ namespace Tests\Feature\Repositories;
 
 use App\Models\User;
 use App\Repositories\UserRepository;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -17,6 +18,8 @@ use function PHPUnit\Framework\isNull;
  */
 class UserRepositoryTest extends TestCase
 {
+    use DatabaseTransactions;
+
     protected $userRepo;
 
     protected function setUp(): void

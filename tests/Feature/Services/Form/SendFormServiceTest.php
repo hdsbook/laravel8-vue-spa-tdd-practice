@@ -2,17 +2,12 @@
 
 namespace Tests\Feature\Services\Form;
 
-use App\Models\Form;
-use App\Models\User;
 use App\Services\Form\SendFormService;
-use App\Models\FormTemplate;
-use App\Models\UserRole;
 use App\Repositories\FormTemplateRepository;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-
-use function PHPUnit\Framework\isNull;
 
 /**
  * class SendFormServiceTest
@@ -21,7 +16,7 @@ use function PHPUnit\Framework\isNull;
  */
 class SendFormServiceTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, DatabaseTransactions;
 
     public function testSendForm()
     {
