@@ -2,9 +2,12 @@
 
 namespace Tests\Feature\Services\Form;
 
+use App\Models\Form;
 use App\Models\User;
 use App\Services\Form\SendFormService;
 use App\Models\FormTemplate;
+use App\Models\UserRole;
+use App\Repositories\FormTemplateRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -26,11 +29,10 @@ class SendFormServiceTest extends TestCase
         $user = $this->signInById(1);
 
         // 建立表單模版
-        $formTemplate = FormTemplate::factory()->create([
-            'create_user_id' => $user->id
-        ]);
+        $formTemplateRepo = new FormTemplateRepository();
+        $formTemplate = $formTemplateRepo->createFormTemplate();
 
-        /** @given 表單名稱、簽核模版ID、表單模版ID */
+        /** @given 表單名稱、表單模版ID、簽核流程 */
         $formName = $this->faker->name;
         $formTemplateId = $formTemplate->id;
         $processData = [

@@ -2,19 +2,22 @@
 
 namespace App\Services\Form;
 
+use App\Models\Form;
 use App\Repositories\FormRepository;
 
+/**
+ * class SendFormService 發送表單
+ */
 class SendFormService
 {
-    protected $formRepo;
-    protected $signingService;
-
-    public function __construct()
-    {
-        $this->formRepo = new FormRepository();
-        $this->signingService = new SigningService();
-    }
-
+    /**
+     * 發送表單
+     *
+     * @param string $formName     表單名稱
+     * @param int $formTemplateId  表單模版代碼
+     * @param array $processData   簽核流程資料
+     * @return Form
+     */
     public function sendForm(
         $formName,
         $formTemplateId,
@@ -25,10 +28,13 @@ class SendFormService
         }
 
         // 建立表單
-        $form = $this->formRepo->createForm($formName, $formTemplateId);
+        $formRepo = new FormRepository();
+        $form = $formRepo->createForm($formName, $formTemplateId);
 
         // 建立 簽核流程
-        $form->signing = $this->signingService->createSigning($form->id, $processData);
+        $signingCreator = new CreateSigningService();
+        $signingCreator->setProcesses($processData);
+        $form->signing = $signingCreator->create($form->id);
 
         return $form;
     }
