@@ -10,6 +10,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * class User 使用者
+ */
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -61,16 +64,25 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    /**
+     * user 的 身份
+     */
     public function userRoles()
     {
         return $this->hasMany(UserRole::class);
     }
 
+    /**
+     * user 發佈的 news
+     */
     public function news()
     {
         return $this->hasMany(News::class);
     }
 
+    /**
+     * user 建立之表單
+     */
     public function createdForms()
     {
         return $this->hasMany(Form::class, 'create_user_id', 'id');

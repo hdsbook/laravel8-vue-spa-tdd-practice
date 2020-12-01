@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * class News 最新消息
+ */
 class News extends Model
 {
     use HasFactory;
@@ -14,7 +17,10 @@ class News extends Model
     protected $fillable = ['title', 'content'];
     protected $hidden = ['deleted_at'];
 
-    public function user()
+    /**
+     * 建立者
+     */
+    public function creator()
     {
         return $this->belongsTo(User::class);
     }
