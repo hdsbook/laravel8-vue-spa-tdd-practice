@@ -1,13 +1,16 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Feature\Models;
 
-// use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+
 use App\Models\User;
 use App\Models\News;
 use App\Models\UserRole;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+
 
 class UserTest extends TestCase
 {
