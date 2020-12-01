@@ -17,10 +17,11 @@ class CreateSigningsTable extends Migration
         Schema::create('signings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('form_id');
+            $table->tinyInteger('progress', false, true)->default(1)->comment('簽核進度(到第幾關)');
 
-            $table->foreignIdFor(User::class, 'create_user_id');
-            $table->softDeletesTz();
+            $table->foreignIdFor(User::class, 'create_user_id')->nullable()->default(null);
             $table->timestamps();
+            $table->softDeletesTz();
         });
     }
 

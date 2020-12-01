@@ -19,8 +19,8 @@ class CreateFormTemplatesTable extends Migration
             $table->id();
             $table->string('form_template_name')->comment('模版名稱');
             $table->foreignIdFor(User::class, 'create_user_id');
-            $table->softDeletesTz();
             $table->timestamps();
+            $table->softDeletesTz();
         });
     }
 

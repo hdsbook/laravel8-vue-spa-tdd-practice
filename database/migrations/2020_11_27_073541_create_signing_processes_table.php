@@ -17,13 +17,12 @@ class CreateSigningProcessesTable extends Migration
         Schema::create('signing_processes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('signing_id')->comment('所屬簽核');
-            $table->foreignIdFor(User::class, 'sign_user_id')->comment('簽核者id');
+            $table->foreignIdFor(User::class, 'sign_user_id')->nullable()->default(null)->comment('簽核者id');
             $table->integer('sequence')->comment('第幾關');
-            $table->tinyInteger('state')->comment('簽核狀態');
 
-            $table->dateTimeTz('sign_time')->comment('簽核時間');
-            $table->softDeletesTz();
+            $table->dateTimeTz('sign_time')->nullable()->default(null)->comment('簽核時間');
             $table->timestamps();
+            $table->softDeletesTz();
         });
     }
 

@@ -20,9 +20,9 @@ class CreateFormsTable extends Migration
             $table->foreignId('form_template_id');
             $table->string('form_name', 256)->comment('表單名稱');
 
-            $table->foreignIdFor(User::class, 'create_user_id');
-            $table->softDeletesTz();
+            $table->foreignIdFor(User::class, 'create_user_id')->nullable()->default(null);
             $table->timestamps();
+            $table->softDeletesTz();
         });
     }
 

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Signing extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['form_id'];
 }

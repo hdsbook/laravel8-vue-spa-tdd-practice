@@ -24,16 +24,13 @@ class FormControllerTest extends TestCase
         parent::setUp();
 
         $this->user = $this->signInById(1);
+
+        // 建立表單模版
         $this->formTemplate = FormTemplate::factory()->create([
             'create_user_id' => $this->user
         ]);
     }
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function testCreateForm()
     {
         /** @given create data */

@@ -17,4 +17,12 @@ class FormRepository extends EloquentRepository
     {
         return \App\Models\Form::class;
     }
+
+    public function createForm($formName, $formTemplateId)
+    {
+        return auth()->user()->createdForms()->create([
+            'form_name' => $formName,
+            'form_template_id' => $formTemplateId,
+        ]);
+    }
 }

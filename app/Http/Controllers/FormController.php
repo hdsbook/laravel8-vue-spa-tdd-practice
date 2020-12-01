@@ -49,10 +49,14 @@ class FormController extends Controller
      */
     public function store(SendFormRequest $request)
     {
+        $processData = [
+            ['sign_user_id' => auth()->user()->id]
+        ];
         $data = $request->validated();
         $form = $this->sendFormService->sendForm(
+            $data['form_name'],
             $data['form_template_id'],
-            $data['form_name']
+            $processData
         );
         $id = $form ? $form->id : null;
 

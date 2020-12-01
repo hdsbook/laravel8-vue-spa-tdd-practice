@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Services;
+namespace Tests\Feature\Services\Form;
 
 use App\Models\User;
 use App\Services\Form\SendFormService;
@@ -31,18 +31,25 @@ class SendFormServiceTest extends TestCase
         ]);
 
         /** @given 表單名稱、簽核模版ID、表單模版ID */
+        $formName = $this->faker->name;
         $formTemplateId = $formTemplate->id;
-        $form_name = $this->faker->name;
+        $processData = [
+            ['sign_user_id' => $user->id]
+        ];
 
         /** @when send form */
         $service = new SendFormService();
-        $form = $service->sendForm($formTemplateId, $form_name);
+        $form = $service->sendForm(
+            $formName,
+            $formTemplateId,
+            $processData
+        );
 
         /** @then check sended */
         $this->assertNotNull($form);
         $this->assertNotNull($form->id);
         $this->assertDatabaseHas('forms', ['id' => $form->id]);
-        $this->assertEquals($form_name, $form->form_name);
-        $this->assertEquals($formTemplateId, $form->form_template_id);
+        $this->assertEquals($formName, $form->form_name, "表單名稱錯誤");
+        $this->assertEquals($formTemplateId, $form->form_template_id, "表單樣版錯誤");
     }
 }
