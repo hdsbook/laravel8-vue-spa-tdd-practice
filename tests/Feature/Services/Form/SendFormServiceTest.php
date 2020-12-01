@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 /**
- * class SendFormServiceTest
+ * class SendFormServiceTest 測試發送表單
  *
  * @property SendFormService $userRepo
  */

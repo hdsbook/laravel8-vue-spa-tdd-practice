@@ -10,6 +10,9 @@ use Tests\TestCase;
 use App\Services\Form\CreateSigningService;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+/**
+ * class CreateSigningServiceTest 測試建立簽核
+ */
 class CreateSigningServiceTest extends TestCase
 {
     use DatabaseTransactions;
