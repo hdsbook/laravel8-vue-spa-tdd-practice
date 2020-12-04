@@ -1,5 +1,5 @@
-import newsApi from '../../api/news';
-import { redirect } from '../../router';
+import { newsApi } from '@/api';
+import { redirect } from '@/router';
 
 // state
 export const state = {

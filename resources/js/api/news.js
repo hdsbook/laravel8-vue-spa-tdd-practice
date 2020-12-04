@@ -1,7 +1,6 @@
-import axios, { api } from '../plugins/axios';
+import { api } from '../plugins/axios';
 
 export default {
-
   fetchNews(page = 1) {
     return api.get('news/fetch', {
       params: { page: page },
