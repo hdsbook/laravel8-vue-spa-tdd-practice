@@ -11,7 +11,6 @@ use App\Models\User;
 use App\Models\News;
 use App\Models\UserRole;
 
-
 class UserTest extends TestCase
 {
     use DatabaseTransactions;

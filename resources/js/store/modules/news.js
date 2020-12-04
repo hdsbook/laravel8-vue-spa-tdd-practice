@@ -1,4 +1,4 @@
-import API from '../../api/news';
+import newsApi from '../../api/news';
 import { redirect } from '../../router';
 
 // state
@@ -34,7 +34,7 @@ export const actions = {
   fetchNews({ commit, getters, state }, page = null) {
     page = page || getters.currentPage;
     commit('setIsLoading', true);
-    return API.fetchNews(page)
+    return newsApi.fetchNews(page)
       .then(res => commit('setNewsPagination', res))
       .then(() => {
         commit('setIsLoading', false);
@@ -42,20 +42,20 @@ export const actions = {
   },
   fetchNewsById({ getters }, id) {
     const news = getters.allNews.find(news => news.id == id);
-    return news ? news : API.fetchNewsById(id);
+    return news ? news : newsApi.fetchNewsById(id);
   },
   createNews({ dispatch }, newsData) {
-    return API.createNews(newsData)
+    return newsApi.createNews(newsData)
       .then(() => dispatch('fetchNews'))
       .then(() => redirect('news'));
   },
   updateNews({ dispatch }, newsData) {
-    return API.updateNews(newsData)
+    return newsApi.updateNews(newsData)
       .then(() => dispatch('fetchNews'))
       .then(() => redirect('news'));
   },
   deleteNews({ dispatch, commit }, id) {
-    return API.deleteNews(id)
+    return newsApi.deleteNews(id)
       .then(() => commit('removeNews', id))
       .then(() => dispatch('fetchNews'));
   },

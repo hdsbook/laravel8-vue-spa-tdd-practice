@@ -1,28 +1,28 @@
-import axios from '../plugins/axios';
+import axios, { api } from '../plugins/axios';
 
 export default {
 
   fetchNews(page = 1) {
-    return axios.get(base_url('api/news/fetch'), {
+    return api.get('news/fetch', {
       params: { page: page },
     }).then(res => res.data);
   },
 
   fetchNewsById(id) {
-    return axios.get(base_url('api/news/find'), {
+    return api.get('news/find', {
       params: { id: id }
     }).then(res => res.data);
   },
 
   createNews({ title, content }) {
-    return axios.post(base_url('api/news'), {
+    return api.post('news', {
       title: title,
       content: content,
     }).then(res => res.data);
   },
 
   updateNews({ id, title, content }) {
-    return axios.post(base_url(`api/news/${id}`), {
+    return api.post(`news/${id}`, {
       _method: 'patch',
       title: title,
       content: content,
@@ -30,6 +30,6 @@ export default {
   },
 
   deleteNews(id) {
-    return axios.delete(`api/news/${id}`);
+    return api.delete(`news/${id}`);
   },
 };
