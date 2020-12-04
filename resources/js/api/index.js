@@ -1,3 +1,3 @@
-import newsApi from './news';
+import newsApi from './newsApi';
 
 export { newsApi };
